@@ -2,8 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { SheetTrigger, SheetContent, Sheet } from "./ui/sheet";
-import { Button } from "./ui/button";
+import { SheetTrigger, SheetContent, Sheet } from "../ui/sheet";
+import { Button } from "../ui/button";
 import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
 
