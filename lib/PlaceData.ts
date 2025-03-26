@@ -1,0 +1,77 @@
+import {Trip} from '@/lib/Interface'
+const trips: Trip[] = [
+  {
+    id: 1,
+    title: 'Jerusalem, Palestine',
+    price: '$5,42k',
+    duration: '10 Days Trip',
+    rating: 4.8,
+    image: '/jerusalem.jpg',
+  },
+  {
+    id: 2,
+    title: 'Dead Sea, Palestine',
+    price: '$3,42k',
+    duration: '7 Days Trip',
+    rating: 4.7,
+    image: '/Dead sea.jpg',
+  },
+  {
+    id: 3,
+    title: 'Ramallah, Palestine',
+    price: '$4,42k',
+    duration: '8 Days Trip',
+    rating: 4.6,
+    image: '/Ramallah.jpg',
+  },
+  {
+    id: 4,
+    title: 'Bethlehem, Palestine',
+    price: '$6,42k',
+    duration: '4 Days Trip',
+    rating: 4.6,
+    image: '/Bethlehem.jpg',
+  },
+  {
+    id: 5,
+    title: 'Nablus, Palestine',
+    price: '$3,42k',
+    duration: '7 Days Trip',
+    rating: 4.7,
+    image: '/Nablus.jpg',
+  },
+  {
+    id: 6,
+    title: 'Hebron, Palestine',
+    price: '$4,42k',
+    duration: '8 Days Trip',
+    rating: 4.6,
+    image: '/Hebron.jpg',
+  },
+  {
+    id: 7,
+    title: 'Jenin, Palestine',
+    price: '$5,42k',
+    duration: '10 Days Trip',
+    rating: 4.8,
+    image: '/Jenin.jpg',
+  },
+  {
+    id: 8,
+    title: 'Gaza, Palestine',
+    price: '$3,42k',
+    duration: '7 Days Trip',
+    rating: 4.7,
+    image: '/Gaza.jpg',
+  },
+  {
+    id: 9,
+    title: 'Tulkarm, Palestine',
+    price: '$4,42k',
+    duration: '8 Days Trip',
+    rating: 4.6,
+    image: '/Tulkarm.jpg',
+  },
+];
+
+export default trips;
