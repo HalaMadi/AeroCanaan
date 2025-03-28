@@ -20,23 +20,23 @@ const Banner = () => {
         Autoplay({ delay: 2000, stopOnInteraction: true })
     );
     return (
-        <div className="relative overflow-hidden bg-gradient-to-b from-amber-50 to-white py-12 md:py-12">
+        <div className="relative overflow-hidden bg-gradient-to-b from-amber-50 to-white py-12 md:py-7">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                     {/* Lift side  */}
                     <div className="flex flex-col justify-center space-y-6">
                         <div className="flex items-center space-x-2">
                             <div className="h-1 w-10 bg-[#FA7436]"></div>
-                            <p className="text-sm font-medium tracking-wider text-[#FA7436] uppercase">
+                            <p className="text-xs font-medium tracking-wider text-[#FA7436] uppercase">
                                 Explore Palestine
                             </p>
                         </div>
-                        <h1 className="text-4xl leading-tight font-bold text-[#222222] md:text-5xl lg:text-6xl">
+                        <h1 className="text-xl leading-tight font-bold text-[#222222] md:text-4xl lg:text-6xl">
                             Discover The{" "}
                             <span className="text-[#FA7436]">Holy Land</span>{" "}
                             With Us
                         </h1>
-                        <p className="max-w-md text-lg text-[#666666]">
+                        <p className="max-w-md text-sm text-[#666666]">
                             Experience the rich history, breathtaking
                             landscapes, and vibrant culture from the river to
                             the sea.
@@ -71,14 +71,14 @@ const Banner = () => {
                                 ))}
                             </div>
                             <div className="space-y-1">
-                                <p className="font-medium text-[#222222]">
+                                <p className="font-medium text-sm text-[#222222]">
                                     2,500+ happy travelers
                                 </p>
                                 <div className="flex items-center">
                                     {[1, 2, 3, 4, 5].map((star) => (
                                         <svg
                                             key={star}
-                                            className="h-4 w-4 fill-amber-400"
+                                            className="h-4 w-3 fill-amber-400"
                                             viewBox="0 0 24 24"
                                         >
                                             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />

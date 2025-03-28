@@ -24,10 +24,10 @@ const Navbar = () => {
                     <Image
                         src="/logo.png"
                         alt="AeroCanaan Logo"
-                        width={100}
-                        height={100}
+                        width={60}
+                        height={80}
                     />
-                    <p className="-ml-2 text-lg font-bold text-[#222222] md:text-2xl">
+                    <p className="-ml-6 text-sm font-bold text-[#222222] mt-4">
                         AeroCanaan
                     </p>
                 </Link>
@@ -36,7 +36,7 @@ const Navbar = () => {
                         <Link
                             key={item.key}
                             href={item.href}
-                            className={`text-xl transition-colors hover:text-amber-600 ${
+                            className={` transition-colors hover:text-amber-600 ${
                                 pathName === item.href
                                     ? "border-b-2 border-[#FA7436] font-bold text-[#FA7436]"
                                     : "text-[#222222]"
@@ -46,16 +46,16 @@ const Navbar = () => {
                         </Link>
                     ))}
                 </nav>
-                <div className="hidden items-center space-x-4 lg:flex">
+                <div className="hidden items-center space-x-4 text-sm lg:flex">
                     <Link
                         href="/login"
-                        className="text-lg text-[#222222] hover:text-amber-600"
+                        className=" text-[#222222] hover:text-amber-600"
                     >
                         Log In
                     </Link>
                     <Link
                         href="/signup"
-                        className="rounded-xl bg-[#FA7436] px-4 py-2 text-lg text-[#FEFCFB] hover:bg-amber-600"
+                        className="rounded-xl bg-[#FA7436] px-4 py-2 text-sm text-[#FEFCFB] hover:bg-amber-600"
                     >
                         Sign up
                     </Link>

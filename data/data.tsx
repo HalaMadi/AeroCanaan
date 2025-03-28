@@ -1,4 +1,4 @@
-import { MapPin, Shield, Users, Heart, Clock, Leaf } from "lucide-react";
+import { MapPin, Shield, Users, Clock } from "lucide-react";
 
 export const carouselImg = [
     { key: 1, src: "/1.jpg", alt: "palestine", location: "Palestine" },
@@ -27,31 +27,21 @@ export const reasons = [
             "Experience more intimate and meaningful connections with locals and fellow travelers in our small group tours."
     },
     {
-        icon: <Heart className="h-10 w-10 text-[#FA7436]" />,
-        title: "Authentic Experiences",
-        description:
-            "Immerse yourself in genuine cultural experiences, from home-cooked meals to traditional craft workshops."
-    },
-    {
         icon: <Clock className="h-10 w-10 text-[#FA7436]" />,
         title: "Flexible Itineraries",
         description:
             "Customize your journey with flexible itineraries tailored to your interests, pace, and travel style."
     },
-    {
-        icon: <Leaf className="h-10 w-10 text-[#FA7436]" />,
-        title: "Responsible Tourism",
-        description:
-            "Travel with purpose through our commitment to sustainable practices and supporting local communities."
-    }
 ];
-
 export const destinations = [
     {
         id: 1,
         name: "Jerusalem",
         image: "/1.jpg",
         rating: 4.9,
+        reviews: 1284,
+        price: 120,
+        location: "Israel",
         category: "historical",
         activities: ["Old City Tour", "Western Wall", "Dome of the Rock"]
     },
@@ -60,6 +50,9 @@ export const destinations = [
         name: "Bethlehem",
         image: "/1.jpg",
         rating: 4.8,
+        reviews: 892,
+        price: 95,
+        location: "West Bank",
         category: "historical",
         activities: ["Church of Nativity", "Shepherd's Field", "Local Crafts"]
     },
@@ -68,8 +61,10 @@ export const destinations = [
         name: "Jericho",
         image: "/",
         rating: 4.6,
+        reviews: 756,
+        price: 85,
+        location: "West Bank",
         category: "historical",
         activities: ["Tel es-Sultan", "Mount of Temptation", "Hisham's Palace"]
     },
-   
 ];
