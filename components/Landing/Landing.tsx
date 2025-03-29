@@ -3,6 +3,7 @@ import Banner from './Banner'
 import WhyAeroCanaan from './WhyAeroCanaan'
 import PopularDestinations from './PopularDestinations'
 import Testimonials from './Testimonials'
+import Footer from './Footer'
 
 const Landing = () => {
   return (
@@ -11,6 +12,7 @@ const Landing = () => {
         <WhyAeroCanaan/>
         <PopularDestinations/>
         <Testimonials/>
+        <Footer/>
     </div>
   )
 }
