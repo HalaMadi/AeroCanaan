@@ -7,8 +7,8 @@ const WhyAeroCanaan = () => {
         <section className="relative overflow-hidden bg-white py-20">
             <div className="container mx-auto px-4">
                 {/* Header */}
-                <div className="mx-auto md-4 max-w-2xl text-center">
-                    <span className="mb-3 inline-block rounded-full bg-amber-50 px-3 py-1 text-sm font-medium text-[#FA7436]">
+                <div className="mx-auto mb-4 max-w-2xl text-center">
+                    <span className="mb-3 inline-block rounded-full bg-amber-50 px-3 py-3 text-sm font-medium text-[#FA7436]">
                         Travel with Confidence
                     </span>
                     <h2 className="mb-4 text-2xl font-bold text-[#222222] md:text-3xl lg:text-4xl">

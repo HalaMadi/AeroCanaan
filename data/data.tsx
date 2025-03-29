@@ -31,7 +31,7 @@ export const reasons = [
         title: "Flexible Itineraries",
         description:
             "Customize your journey with flexible itineraries tailored to your interests, pace, and travel style."
-    },
+    }
 ];
 export const destinations = [
     {
@@ -66,5 +66,36 @@ export const destinations = [
         location: "West Bank",
         category: "historical",
         activities: ["Tel es-Sultan", "Mount of Temptation", "Hisham's Palace"]
+    }
+];
+
+export const testimonials = [
+    {
+        name: "Lina Ahmad",
+        role: "Traveler",
+        feedback:
+            "AeroCanaan provided an unforgettable experience! The guides were knowledgeable, and the views were breathtaking.",
+        image: "/images/user1.jpg"
     },
+    {
+        name: "Ahmad Saleh",
+        role: "Adventurer",
+        feedback:
+            "Exploring Palestine with AeroCanaan was a dream come true. Highly recommended for any traveler!",
+        image: "/images/user2.jpg"
+    },
+    {
+        name: "Sara Khaled",
+        role: "Backpacker",
+        feedback:
+            "I had the best time ever! The team was so friendly, and the itinerary was perfectly planned.",
+        image: "/images/user3.jpg"
+    },
+    {
+        name: "Omar Nasser",
+        role: "Explorer",
+        feedback:
+            "A must-try experience! Everything was well organized, and the trip was beyond my expectations.",
+        image: "/images/user4.jpg"
+    }
 ];
