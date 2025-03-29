@@ -1,10 +1,11 @@
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/common/Navbar";
+import Landing from "@/components/Landing/Landing";
 
 export default function Home() {
     return (
         <div className="">
-          <Navbar/>
-           
+            <Navbar />
+            <Landing/>
         </div>
     );
 }
