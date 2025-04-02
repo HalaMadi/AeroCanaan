@@ -1,11 +1,19 @@
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import { signupSchema } from "@/lib/validationSchemas";
 const prisma = new PrismaClient();
 export async function POST(req: NextRequest) {
     try {
+        const body = await req.json();
+        const validation = signupSchema.safeParse(body);
+        if (!validation.success) {
+            return NextResponse.json(validation.error.format(), {
+                status: 400
+            });
+        }
         const { firstName, lastName, email, mobile, password } =
-            await req.json();
+            validation.data;
         const existingUser = await prisma.user.findUnique({ where: { email } });
         if (existingUser) {
             return NextResponse.json(
