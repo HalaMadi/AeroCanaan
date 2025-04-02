@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 const prisma = new PrismaClient();
 export async function POST(req: NextRequest) {
     try {
@@ -24,13 +23,8 @@ export async function POST(req: NextRequest) {
                 password: hashedPassword
             }
         });
-        const token = jwt.sign(
-            { userId: newUser.id, firstName, lastName, email },
-            process.env.JWT_SECRET_KEY!,
-            { expiresIn: "2h" }
-        );
         return NextResponse.json(
-            { message: "User Added successfully", token },
+            { message: "User Added successfully", newUser },
             { status: 201 }
         );
     } catch (error) {
