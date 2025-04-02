@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import trips from '@/lib/PlaceData';
+import trips from '@/data/PlaceData';
 
 export default function TripsPage() {
   return (
