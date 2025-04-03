@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react";
 import Image from "next/image";
-import trips from "@/lib/PlaceData";
+import trips from "@/data/PlaceData";
 
 const itemsPerPage = 9;    
 

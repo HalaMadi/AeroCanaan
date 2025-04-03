@@ -8,7 +8,7 @@ export const signupSchema = z
         lastName: z.string().min(2, "Last Name must be at least 2 characters"),
         email: z.string().email("Invalid email format"),
         mobile: z.string().regex(/^\+?\d{10,15}$/, "Invalid phone number"),
-        password: z.string().min(6, "Password must me more than 6 characters"),
+        password: z.string().min(6, "Password must be more than 6 characters"),
         confirmPassword: z.string()
     })
     .refine((data) => data.password === data.confirmPassword, {
