@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 const navItems = [
     { key: "1", label: "Home", href: "/" },
     { key: "2", label: "Activities", href: "/trips" },
-    { key: "3", label: "Explore", href: "/explore" },
+    { key: "3", label: "Destinations", href: "/destinations" },
     { key: "4", label: "Contact Us", href: "/contact" }
 ];
 
@@ -27,7 +27,7 @@ const Navbar = () => {
                         width={60}
                         height={80}
                     />
-                    <p className="mt-4 -ml-6 text-sm font-bold text-[#222222]">
+                    <p className="-ml-6 text-sm font-bold text-[#222222] mt-4">
                         AeroCanaan
                     </p>
                 </Link>
@@ -36,7 +36,7 @@ const Navbar = () => {
                         <Link
                             key={item.key}
                             href={item.href}
-                            className={`transition-colors hover:text-amber-600 ${
+                            className={` transition-colors hover:text-amber-600 ${
                                 pathName === item.href
                                     ? "border-b-2 border-[#FA7436] font-bold text-[#FA7436]"
                                     : "text-[#222222]"
@@ -49,7 +49,7 @@ const Navbar = () => {
                 <div className="hidden items-center space-x-4 text-sm lg:flex">
                     <Link
                         href="/login"
-                        className="text-[#222222] hover:text-amber-600"
+                        className=" text-[#222222] hover:text-amber-600"
                     >
                         Log In
                     </Link>

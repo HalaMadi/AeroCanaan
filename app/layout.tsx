@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/common/Navbar";
 
+
 const poppins = Poppins({
     variable: "--font-poppins",
     weight: ["100", "400", "700"]

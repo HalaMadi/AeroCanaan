@@ -14,25 +14,26 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  firstName String
-  lastName  String
-  email     String    @unique
-  mobile    String    @unique
-  password  String
-  role      Role      @default(USER)
-  bookings  Booking[]
+  id         String    @id @default(uuid())
+  firstName  String
+  lastName   String
+  email      String    @unique
+  mobile     String    @unique
+  password   String
+  role       Role      @default(USER)
+  bookings   Booking[]
 }
 
 model Trip {
   id          String    @id @default(uuid())
-  name        String
+  title        String
   destination String
   duration    Int
   start_date  DateTime
   end_date    DateTime
   price       Float
   seats       Int
+  image      String
   bookings    Booking[]
 }
 
@@ -43,6 +44,15 @@ model Booking {
   trip   Trip          @relation(fields: [tripId], references: [id])
   tripId String
   status BookingStatus @default(PENDING)
+}
+
+model Place {
+  id        String  @id @default(uuid()) 
+  name      String
+  slug      String  @unique
+  image     String  
+  rating    Float   
+  location  String
 }
 
 enum Role {
