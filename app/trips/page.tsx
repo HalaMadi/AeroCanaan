@@ -1,7 +1,17 @@
-import Image from 'next/image';
-import trips from '@/data/PlaceData';
+'use client'
+import { useState } from "react";
+import Image from "next/image";
+import trips from "@/lib/PlaceData";
+
+const itemsPerPage = 9;    
 
 export default function TripsPage() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentTrips = trips.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(trips.length / itemsPerPage);
+
   return (
     <div className="min-h-screen bg-white p-8 flex flex-col justify-center items-center">
       <h1 className="text-3xl font-bold text-black text-center">
@@ -11,7 +21,7 @@ export default function TripsPage() {
         Plan your perfect vacation with our travel agency. Choose among dozens of all-inclusive offers!
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10 w-full max-w-[1200px]">
-        {trips.map((trip) => (
+        {currentTrips.map((trip) => (
           <div key={trip.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
             <Image 
               src={trip.image} 
@@ -36,6 +46,27 @@ export default function TripsPage() {
             </div>
           </div>
         ))}
+      </div>
+      <div className="flex justify-center mt-6 space-x-4">
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          className="px-4 py-2 bg-orange-500 text-white rounded-lg disabled:opacity-50"
+          disabled={currentPage === 1}
+        >
+          ⬅Prev
+        </button>
+
+        <span className="px-4 py-2 bg-orange-500 text-white rounded-lg">
+          {currentPage} / {totalPages}
+        </span>
+
+        <button
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          className="px-4 py-2 bg-orange-500 text-white rounded-lg disabled:opacity-50"
+          disabled={currentPage === totalPages}
+        >
+          Next ➡
+        </button>
       </div>
     </div>
   );
