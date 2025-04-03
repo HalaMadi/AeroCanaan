@@ -1,5 +1,6 @@
-// Simplified version of the cn utility that doesn't rely on external dependencies
-export function cn(...classes: (string | undefined | null | false | 0)[]) {
-  return classes.filter(Boolean).join(" ")
-}
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
 
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}

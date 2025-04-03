@@ -1,19 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Star, MapPin } from "lucide-react"
-
-interface PlaceCardProps {
-  id: number
-  name: string
-  slug: string
-  image: string
-  rating: number
-  location: string
-  originalPrice?: number
-  discountPrice?: number
-  featured?: boolean
-}
-
+import { PlaceCardProps } from "@/types/Interface"
 export function PlaceCard({
   id,
   name,

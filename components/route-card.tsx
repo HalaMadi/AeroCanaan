@@ -1,16 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Star, Clock } from "lucide-react"
+import { RouteCardProps } from "@/types/Interface"
 
-interface RouteCardProps {
-  id: number
-  name: string
-  slug: string
-  image: string
-  price: string
-  duration: number
-  rating: number
-}
+
 
 export function RouteCard({ id, name, slug, image, price, duration, rating }: RouteCardProps) {
   return (

@@ -14,14 +14,14 @@ datasource db {
 }
 
 model User {
-  id         String    @id @default(uuid())
-  firstName  String
-  lastName   String
-  email      String    @unique
-  mobile     String    @unique
-  password   String
-  role       Role      @default(USER)
-  bookings   Booking[]
+  id        String    @id @default(uuid())
+  firstName String
+  lastName  String
+  email     String    @unique
+  mobile    String    @unique
+  password  String
+  role      Role      @default(USER)
+  bookings  Booking[]
 }
 
 model Trip {
