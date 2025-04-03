@@ -1,4 +1,4 @@
-import {Trip} from '@/lib/Interface'
+import {Trip} from '@/types/Interface'
 const trips: Trip[] = [
   {
     id: 1,
