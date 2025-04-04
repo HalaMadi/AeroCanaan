@@ -13,13 +13,15 @@ CREATE TABLE "User" (
 CREATE TABLE "Trip" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "title" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
     "destination" TEXT NOT NULL,
     "duration" INTEGER NOT NULL,
     "start_date" DATETIME NOT NULL,
     "end_date" DATETIME NOT NULL,
     "price" REAL NOT NULL,
     "seats" INTEGER NOT NULL,
-    "image" TEXT NOT NULL
+    "image" TEXT NOT NULL,
+    "rating" INTEGER NOT NULL
 );
 
 -- CreateTable
