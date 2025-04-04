@@ -1,4 +1,3 @@
-
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -36,14 +35,13 @@ export async function POST(req: NextRequest) {
                 end_date,
                 price,
                 seats,
-                image
+                image,
+                slug: title.toLowerCase().replace(/\s+/g, "-"), // Example slug generation
+                rating: 0
             }
         });
         return NextResponse.json(trip, { status: 201 });
     } catch (error) {
-        return NextResponse.json(
-            { error: error},
-            { status: 500 }
-        );
+        return NextResponse.json({ error: error }, { status: 500 });
     }
 }

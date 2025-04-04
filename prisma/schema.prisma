@@ -14,26 +14,28 @@ datasource db {
 }
 
 model User {
-  id         String    @id @default(uuid())
-  firstName  String
-  lastName   String
-  email      String    @unique
-  mobile     String    @unique
-  password   String
-  role       Role      @default(USER)
-  bookings   Booking[]
+  id        String    @id @default(uuid())
+  firstName String
+  lastName  String
+  email     String    @unique
+  mobile    String    @unique
+  password  String
+  role      Role      @default(USER)
+  bookings  Booking[]
 }
 
 model Trip {
   id          String    @id @default(uuid())
-  title        String
+  title       String
+  slug        String
   destination String
   duration    Int
   start_date  DateTime
   end_date    DateTime
   price       Float
   seats       Int
-  image      String
+  image       String
+  rating      Int
   bookings    Booking[]
 }
 
@@ -47,12 +49,12 @@ model Booking {
 }
 
 model Place {
-  id        String  @id @default(uuid()) 
-  name      String
-  slug      String  @unique
-  image     String  
-  rating    Float   
-  location  String
+  id       String @id @default(uuid())
+  name     String
+  slug     String @unique
+  image    String
+  rating   Float
+  location String
 }
 
 enum Role {
