@@ -12,13 +12,14 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Trip" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "name" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
     "destination" TEXT NOT NULL,
     "duration" INTEGER NOT NULL,
     "start_date" DATETIME NOT NULL,
     "end_date" DATETIME NOT NULL,
     "price" REAL NOT NULL,
-    "seats" INTEGER NOT NULL
+    "seats" INTEGER NOT NULL,
+    "image" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -31,8 +32,21 @@ CREATE TABLE "Booking" (
     CONSTRAINT "Booking_tripId_fkey" FOREIGN KEY ("tripId") REFERENCES "Trip" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+-- CreateTable
+CREATE TABLE "Place" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "name" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
+    "image" TEXT NOT NULL,
+    "rating" REAL NOT NULL,
+    "location" TEXT NOT NULL
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_mobile_key" ON "User"("mobile");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Place_slug_key" ON "Place"("slug");
