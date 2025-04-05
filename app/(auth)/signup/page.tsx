@@ -118,7 +118,7 @@ const SignUp = () => {
                 </button>
                 <p className="mt-4 text-center text-sm text-white">
                     Already have an account?{" "}
-                    <Link href="/login" className="font-bold text-orange-500">
+                    <Link href="/auth/login" className="font-bold text-orange-500">
                         Login
                     </Link>
                 </p>
