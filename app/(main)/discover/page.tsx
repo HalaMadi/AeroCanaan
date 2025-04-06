@@ -1,4 +1,7 @@
+import DiscoverCard from "@/components/discover/discoverCard";
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { destinations } from "@/data/data";
 import { TabsContent } from "@radix-ui/react-tabs";
 import Image from "next/image";
 
@@ -40,7 +43,7 @@ const Discover = () => {
                     </p>
                 </div>
             </div>
-            <Tabs className="mx-auto max-w-6xl">
+            <Tabs defaultValue="all" className="mx-auto mb-12 max-w-6xl">
                 <div className="mb-8 flex justify-center">
                     <TabsList className="bg-amber-50/80">
                         <TabsTrigger value="all" className="text-sm">
@@ -60,10 +63,58 @@ const Discover = () => {
                         </TabsTrigger>
                     </TabsList>
                 </div>
-                <TabsContent value="all">
-                    
+
+                {/* All Destinations Tab */}
+                <TabsContent value="all" className="space-y-8">
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        {destinations.map((destination) => (
+                            <DiscoverCard
+                                key={destination.id}
+                                destination={destination}
+                            />
+                        ))}
+                    </div>
                 </TabsContent>
+
+                {/* Category-specific Tabs */}
+                {["historical", "religious", "natural", "cultural"].map(
+                    (category) => (
+                        <TabsContent
+                            key={category}
+                            value={category}
+                            className="space-y-8"
+                        >
+                            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                                {destinations
+                                    .filter(
+                                        (dest) => dest.category === category
+                                    )
+                                    .map((destination) => (
+                                        <DiscoverCard
+                                            key={destination.id}
+                                            destination={destination}
+                                        />
+                                    ))}
+                            </div>
+                        </TabsContent>
+                    )
+                )}
             </Tabs>
+
+            {/* Call to Action */}
+            <div className="mx-auto mt-16 max-w-4xl rounded-xl bg-amber-50 p-8 text-center">
+                <h3 className="mb-4 text-2xl font-bold text-gray-900">
+                    Ready to Experience Palestine?
+                </h3>
+                <p className="mx-auto mb-6 max-w-2xl text-gray-600">
+                    Join one of our guided tours to explore these amazing
+                    destinations with knowledgeable local guides who will bring
+                    the history and culture to life.
+                </p>
+                <Button className="bg-[#FA7436] text-white hover:bg-[#e56a30]">
+                    View Our Tours
+                </Button>
+            </div>
         </main>
     );
 };

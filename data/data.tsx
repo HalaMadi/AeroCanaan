@@ -33,6 +33,41 @@ export const reasons = [
             "Customize your journey with flexible itineraries tailored to your interests, pace, and travel style."
     }
 ];
+export const destination = [
+    {
+        id: 1,
+        name: "Jerusalem",
+        image: "/1.jpg",
+        rating: 4.9,
+        reviews: 1284,
+        price: 120,
+        location: "Israel",
+        category: "historical",
+        activities: ["Old City Tour", "Western Wall", "Dome of the Rock"]
+    },
+    {
+        id: 2,
+        name: "Bethlehem",
+        image: "/1.jpg",
+        rating: 4.8,
+        reviews: 892,
+        price: 95,
+        location: "West Bank",
+        category: "historical",
+        activities: ["Church of Nativity", "Shepherd's Field", "Local Crafts"]
+    },
+    {
+        id: 4,
+        name: "Jericho",
+        image: "/",
+        rating: 4.6,
+        reviews: 756,
+        price: 85,
+        location: "West Bank",
+        category: "historical",
+        activities: ["Tel es-Sultan", "Mount of Temptation", "Hisham's Palace"]
+    }
+];
 
 export const testimonials = [
     {
@@ -82,10 +117,10 @@ export const destinations = [
         "As a holy city for Judaism, Christianity, and Islam, Jerusalem has always been of great symbolic importance. It serves as a center of life, pilgrimage, and religious study.",
       location: "Jerusalem",
       images: [
-        "/images/jerusalem-old-city.jpg",
-        "/images/jerusalem-western-wall.jpg",
-        "/images/jerusalem-dome-rock.jpg",
-        "/images/jerusalem-holy-sepulchre.jpg",
+        "/images/jerusalem.jpg",
+        "/images/jerusalem.jpg",
+        "/images/jerusalem.jpg",
+        "/images/jerusalem.jpg",
       ],
       bestTimeToVisit: "Spring (March to May) and autumn (September to November) offer pleasant temperatures",
       accessibilityInfo:
@@ -157,10 +192,10 @@ export const destinations = [
         "The Dead Sea is a salt lake bordered by Jordan to the east and the West Bank to the west. It lies in the Jordan Rift Valley, and its main tributary is the Jordan River. The Dead Sea is 304 m (997 ft) deep, the deepest hypersaline lake in the world. With a salinity of 342 g/kg, or 34.2% (in 2011), it is one of the world's saltiest bodies of water – 9.6 times as salty as the ocean – and has a density of 1.24 kg/liter, which makes swimming similar to floating.",
       location: "Jordan Valley",
       images: [
-        "/images/dead-sea-floating.jpg",
-        "/images/dead-sea-shore.jpg",
-        "/images/dead-sea-mud.jpg",
-        "/images/dead-sea-sunset.jpg",
+        "/images/DeadSea.jpg",
+        "/images/DeadSea.jpg",
+        "/images/DeadSea.jpg",
+        "/images/DeadSea.jpg",
       ],
       bestTimeToVisit: "Spring and fall offer pleasant temperatures. Summer can be extremely hot.",
       accessibilityInfo:
@@ -238,10 +273,10 @@ export const destinations = [
         "Hebron is significant to both Jews and Muslims due to its association with Abraham. The Ibrahimi Mosque/Cave of the Patriarchs is the second holiest site in Judaism and the fourth in Islam.",
       location: "West Bank",
       images: [
-        "/images/hebron-old-city.jpg",
-        "/images/hebron-market.jpg",
-        "/images/tomb-patriarchs.jpg",
-        "/images/hebron-glass.jpg",
+        "/images/Hebron.jpg",
+        "/images/Hebron.jpg",
+        "/images/Hebron.jpg",
+        "/images/Hebron.jpg",
       ],
       bestTimeToVisit: "Spring and autumn offer pleasant temperatures for exploring the old city",
       accessibilityInfo:
@@ -312,10 +347,11 @@ export const destinations = [
         "Nablus has been a center of trade and culture for centuries. The city is known for its traditional olive oil soap production, which dates back to the 10th century. The old soap factories (masabins) are still operational and represent an important part of Palestinian cultural heritage.",
       location: "Northern West Bank",
       images: [
-        "/images/nablus-old-city.jpg",
-        "/images/nablus-soap-factory.jpg",
-        "/images/nablus-kanafeh.jpg",
-        "/images/nablus-market.jpg",
+        "/images/Nablus.jpg",
+        "/images/Nablus.jpg",
+        "/images/Nablus.jpg",
+        "/images/Nablus.jpg",
+        
       ],
       bestTimeToVisit: "Spring and fall offer pleasant temperatures for exploring the old city",
       accessibilityInfo:
@@ -501,5 +537,3 @@ export const destinations = [
       availableTrips: 0,
     },
   ]
-  
-  
