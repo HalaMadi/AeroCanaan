@@ -11,7 +11,8 @@ const navItems = [
     { key: "1", label: "Home", href: "/" },
     { key: "2", label: "Activities", href: "/trips" },
     { key: "3", label: "Destinations", href: "/explore" },
-    { key: "4", label: "Contact Us", href: "/contact" }
+    { key: "4", label: "Contact Us", href: "/contact" },
+    { key: "5", label: "Discover", href: "/discover" }
 ];
 
 const Navbar = () => {
@@ -19,7 +20,7 @@ const Navbar = () => {
     const pathName = usePathname();
     return (
         <div className="sticky top-0 z-50 w-full">
-            <div className="container mx-auto flex w-full items-center justify-between bg-white px-4 md:px-6">
+            <div className=" mx-auto flex w-full items-center justify-between bg-white px-4 md:px-6">
                 <Link href="/" className="flex items-center gap-2">
                     <Image
                         src="/logo.png"
