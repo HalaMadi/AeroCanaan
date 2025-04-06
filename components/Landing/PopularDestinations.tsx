@@ -78,7 +78,7 @@ const PopularDestinations = () => {
                     ))}
                 </div>
                 <div className="mt-10 text-center">
-                    <Link href={"/destination"}>
+                    <Link href={"/explore"}>
                         <Button
                             variant="outline"
                             className="group border-[#FA7436] px-8 py-6 text-[#222222] hover:bg-amber-50"

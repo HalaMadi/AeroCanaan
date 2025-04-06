@@ -10,7 +10,7 @@ const poppins = Poppins({
     weight: ["100", "400", "700"]
 });
 export const metadata = {
-    title: "AeroCanaan Explorer",
+    title: "AeroCanaan",
     description: "Explore the beautiful destinations in Palestine"
 };
 export default function RootLayout({

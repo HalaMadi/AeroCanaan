@@ -222,7 +222,7 @@ const featuredDestinations = [
 const vacationPlans = [
   {
     id: 1,
-    name: "Jerusalem, Palestine",
+    name: "Al-Aqsa Mosque, Jerusalem",
     image: "/images/jerusalem2.jpeg",
     price: "5,42k",
     duration: 10,
@@ -238,8 +238,8 @@ const vacationPlans = [
   },
   {
     id: 3,
-    name: "Ramallah, Palestine",
-    image: "/images/ramallah.jpg",
+    name: "Church of the Nativity, Bethlehem",
+    image: "/images/church.jpeg",
     price: "4,42k",
     duration: 8,
     rating: 4.6,
@@ -250,30 +250,57 @@ const vacationPlans = [
 const specialOffers = [
   {
     id: 1,
-    name: "Nablus, Palestine",
-    image: "/images/nablus.jpeg",
+    name: "Al-Jazzar Mosque",
+    image: "/images/aljazzar.webp",
     price: "500",
     rating: 5,
     description:
-      "5 nights and 4 days in 5 star hotel, breakfast and lunch included. Very popular during the renaissance. Passage and going through the cities of the world in classical literature.",
+      "An Ottoman-era mosque built in the 18th century, known for its green dome, tall minaret, and blue-tiled courtyard, making it a significant Islamic landmark.",
   },
   {
     id: 2,
-    name: "Gaza, Palestine",
+    name: "Gaza Beach",
     image: "/images/gaza-beach.jpg",
     price: "800",
     rating: 5,
     description:
-      "5 nights and 4 days in 5 star hotel, breakfast and lunch included. Very popular during the renaissance. Passage and going through the cities of the world in classical literature.",
+      "A scenic Mediterranean coastline with golden sands and blue waters, serving as a vital social and recreational spot for Gaza’s residents.",
   },
   {
     id: 3,
-    name: "Jenin, Palestine",
-    image: "/images/jenin.jpg",
+    name: "Hisham’s Palace",
+    image: "/images/Hisham_Palace.jpg",
     price: "750",
     rating: 5,
     description:
-      "5 nights and 4 days in 5 star hotel, breakfast and lunch included. Very popular during the renaissance. Passage and going through the cities of the world in classical literature.",
+      "An Umayyad-era archaeological site from the 8th century, famous for its Tree of Life mosaic, one of the most beautiful in Islamic art.",
+  },
+  {
+    id: 4,
+    name: "Wadi Qelt",
+    image: "/images/wadiqelt.jpg",
+    price: "450",
+    rating: 5,
+    description:
+      "A stunning natural valley between Jerusalem and Jericho, featuring flowing water, breathtaking cliffs, and St. George’s Monastery, a historic pilgrimage site.",
+  },
+  {
+    id: 5,
+    name: "Sebastia",
+    image: "/images/sebastia.jpg",
+    price: "400",
+    rating: 5,
+    description:
+      "An archaeological site with Roman and Byzantine ruins, including an ancient Roman theater and royal palace remains, perfect for history lovers.",
+  },
+  {
+    id: 6,
+    name: "Solomon’s Pools",
+    image: "/images/suliman.jpg",
+    price: "550",
+    rating: 5,
+    description:
+      "Solomon’s Pools are three ancient reservoirs near Bethlehem, built during the Roman era to supply water to Jerusalem. They are a historical landmark surrounded by beautiful nature..",
   },
 ]
 
