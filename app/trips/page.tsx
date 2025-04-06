@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import trips from "@/data/PlaceData";
-
+import TripDialog from "@/components/TripDialog/TripDialog";
 const itemsPerPage = 9;    
 
 export default function TripsPage() {
@@ -20,7 +20,7 @@ export default function TripsPage() {
       <p className="text-gray-600 text-center mt-2">
         Plan your perfect vacation with our travel agency. Choose among dozens of all-inclusive offers!
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10 w-full max-w-[1200px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10 w-full max-w-[1200px] text-center">
         {currentTrips.map((trip) => (
           <div key={trip.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
             <Image 
@@ -36,12 +36,7 @@ export default function TripsPage() {
               <p className="text-gray-500">{trip.duration}</p>
               <p className="text-yellow-500 font-bold">⭐ {trip.rating}</p>
               <div className="flex justify-between mt-4">
-                <button className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 cursor-pointer">
-                  Book Now
-                </button>
-                <button className="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg hover:bg-orange-100 cursor-pointer">
-                  View Details
-                </button>
+              <TripDialog trip={trip} />
               </div>
             </div>
           </div>
