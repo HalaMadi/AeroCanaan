@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { signupSchema } from "@/lib/validationSchemas";
+import { sendEmail } from "@/lib/email/sendEmail";
 const prisma = new PrismaClient();
 export async function POST(req: NextRequest) {
     try {
@@ -31,6 +32,11 @@ export async function POST(req: NextRequest) {
                 password: hashedPassword
             }
         });
+        try {
+            await sendEmail(email, firstName);
+        } catch (emailError) {
+            console.error("Failed to send email:", emailError);
+        }
         return NextResponse.json(
             { message: "User Added successfully", newUser },
             { status: 201 }
