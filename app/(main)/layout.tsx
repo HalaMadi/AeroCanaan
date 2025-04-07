@@ -1,6 +1,6 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { Poppins } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/common/Navbar";
 
