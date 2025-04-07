@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     } = await req.json();
     const slug = slugify(name);
     try {
-        const formattedImages = images.map((image: any) => {
+        const formattedImages = images.map((image: { url: string }) => {
             if (typeof image.url !== "string") {
                 throw new Error("Each image URL should be a string");
             }
@@ -60,5 +60,23 @@ export async function GET() {
             { message: "Internal server error" },
             { status: 500 }
         );
+    }
+}
+
+export async function DELETE(req: NextRequest) {
+    try {
+        const { id } = await req.json();
+        if (!id) {
+            return NextResponse.json("ID is required", { status: 400 });
+        }
+        const place = await prisma.place.delete({
+            where: {
+                id
+            }
+        });
+        return NextResponse.json(JSON.stringify(place), { status: 200 });
+    } catch (error) {
+        console.error("Error deleting place:", error);
+        return NextResponse.json("Failed to delete place", { status: 500 });
     }
 }

@@ -30,8 +30,8 @@ CREATE TABLE "Booking" (
     "userId" TEXT NOT NULL,
     "tripId" TEXT NOT NULL,
     "status" TEXT NOT NULL DEFAULT 'PENDING',
-    CONSTRAINT "Booking_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "Booking_tripId_fkey" FOREIGN KEY ("tripId") REFERENCES "Trip" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "Booking_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE Cascade ON UPDATE CASCADE,
+    CONSTRAINT "Booking_tripId_fkey" FOREIGN KEY ("tripId") REFERENCES "Trip" ("id") ON DELETE Cascade ON UPDATE CASCADE
 );
 
 -- CreateTable

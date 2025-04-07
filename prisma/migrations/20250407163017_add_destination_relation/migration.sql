@@ -59,7 +59,7 @@ CREATE TABLE "new_Trip" (
     "isSpecialOffer" BOOLEAN NOT NULL DEFAULT false,
     "hasDiscount" BOOLEAN NOT NULL DEFAULT false,
     "destinationId" TEXT ,
-    CONSTRAINT "Trip_destinationId_fkey" FOREIGN KEY ("destinationId") REFERENCES "Place" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "Trip_destinationId_fkey" FOREIGN KEY ("destinationId") REFERENCES "Place" ("id") ON DELETE Cascade ON UPDATE CASCADE
 );
 INSERT INTO "new_Trip" ("description", "destination", "discountPrice", "duration", "end_date", "featured", "hasDiscount", "id", "image", "isFeatured", "isSpecialOffer", "originalPrice", "price", "rating", "seats", "slug", "start_date", "title") SELECT "description", "destination", "discountPrice", "duration", "end_date", "featured", "hasDiscount", "id", "image", "isFeatured", "isSpecialOffer", "originalPrice", "price", "rating", "seats", "slug", "start_date", "title" FROM "Trip";
 DROP TABLE "Trip";
