@@ -25,18 +25,25 @@ model User {
 }
 
 model Trip {
-  id          String    @id @default(uuid())
-  title       String
-  slug        String
-  destination String
-  duration    Int
-  start_date  DateTime
-  end_date    DateTime
-  price       Float
-  seats       Int
-  image       String
-  rating      Int
-  bookings    Booking[]
+  id             String    @id @default(uuid())
+  title          String
+  slug           String
+  destination    String
+  duration       Int
+  start_date     DateTime
+  end_date       DateTime
+  price          Float
+  originalPrice  Float?
+  discountPrice  Float?
+  seats          Int
+  image          String
+  rating         Int
+  featured       Boolean   @default(false)
+  description    String?
+  isFeatured     Boolean   @default(false)
+  isSpecialOffer Boolean   @default(false)
+  hasDiscount    Boolean   @default(false)
+  bookings       Booking[]
 }
 
 model Booking {
