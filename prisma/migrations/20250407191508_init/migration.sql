@@ -19,9 +19,16 @@ CREATE TABLE "Trip" (
     "start_date" DATETIME NOT NULL,
     "end_date" DATETIME NOT NULL,
     "price" REAL NOT NULL,
+    "originalPrice" REAL,
+    "discountPrice" REAL,
     "seats" INTEGER NOT NULL,
     "image" TEXT NOT NULL,
-    "rating" INTEGER NOT NULL
+    "rating" INTEGER NOT NULL,
+    "featured" BOOLEAN NOT NULL DEFAULT false,
+    "description" TEXT,
+    "isFeatured" BOOLEAN NOT NULL DEFAULT false,
+    "isSpecialOffer" BOOLEAN NOT NULL DEFAULT false,
+    "hasDiscount" BOOLEAN NOT NULL DEFAULT false
 );
 
 -- CreateTable

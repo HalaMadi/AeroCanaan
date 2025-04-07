@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 
 const SignUp = () => {
     const router = useRouter();
-
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [userData, setUserData] = useState({
@@ -17,7 +16,6 @@ const SignUp = () => {
         password: "",
         confirmPassword: ""
     });
-
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setUserData({
@@ -25,7 +23,6 @@ const SignUp = () => {
             [name]: value
         });
     };
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
@@ -34,15 +31,12 @@ const SignUp = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(userData)
             });
-
             const result = await response.json();
-
             if (!response.ok) {
                 console.error(result);
                 alert("Signup failed: " + result.error);
                 return;
             }
-
             alert("Signup successful!");
             router.push("/login");
         } catch (error) {
@@ -50,7 +44,6 @@ const SignUp = () => {
             alert("Something went wrong");
         }
     };
-
     return (
         <div
             className="flex min-h-screen"
