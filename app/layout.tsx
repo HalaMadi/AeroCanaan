@@ -7,8 +7,9 @@ import Navbar from "@/components/common/Navbar";
 
 const poppins = Poppins({
     variable: "--font-poppins",
-    weight: ["100", "400", "700"]
-});
+    weight: ["100", "400", "700"],
+    display: "swap"
+  });
 export const metadata = {
     title: "AeroCanaan Explorer",
     description: "Explore the beautiful destinations in Palestine"
@@ -26,7 +27,7 @@ export default function RootLayout({
                     poppins.variable
                 )}
             >
-                <ThemeProvider defaultTheme="system" enableSystem>
+                <ThemeProvider defaultTheme="light" enableSystem>
                     <Navbar />
                     {children}
                 </ThemeProvider>
