@@ -10,13 +10,11 @@ import { logInSchema } from "@/lib/validationSchemas";
 const LoginForm = () => {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
         const email = e.currentTarget["email"].value;
         const password = e.currentTarget["password"].value;
-
         const validation = logInSchema.safeParse({ email, password });
         if (!validation.success) {
             const errors = validation.error.flatten().fieldErrors;
@@ -26,7 +24,6 @@ const LoginForm = () => {
             setLoading(false);
             return;
         }
-
         try {
             const res = await fetch("/api/auth/login", {
                 method: "POST",
@@ -34,7 +31,6 @@ const LoginForm = () => {
                 headers: { "Content-Type": "application/json" }
             });
             const data = await res.json();
-
             if (res.ok) {
                 localStorage.setItem("auth-token", data.token);
                 toast.success("Logged in successfully", {

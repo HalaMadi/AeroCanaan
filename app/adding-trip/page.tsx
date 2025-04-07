@@ -22,13 +22,11 @@ const AddingTripPage = () => {
           </nav>
         </div>
       </aside>
-
       <main className="flex-1 p-8 overflow-y-auto">
         <header className="flex justify-between items-center mb-8">
           <h2 className="text-2xl font-semibold">Add New Trip</h2>
           <div className="flex items-center space-x-4"></div>
         </header>
-
         <section className="mb-12">
           <h3 className="text-lg font-semibold mb-4">My Trips</h3>
           <table className="w-full text-left border">
@@ -77,7 +75,6 @@ const AddingTripPage = () => {
             </tbody>
           </table>
         </section>
-
         <section className="bg-white p-6 rounded shadow">
           <h3 className="text-lg font-semibold mb-4">Add Trip</h3>
           <form className="grid grid-cols-1 md:grid-cols-3 gap-4">
