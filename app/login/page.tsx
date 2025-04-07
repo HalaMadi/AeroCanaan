@@ -5,27 +5,44 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { User, Lock } from "@phosphor-icons/react";
+import { logInSchema } from "@/lib/validationSchemas";
 
 const LoginForm = () => {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
         const email = e.currentTarget["email"].value;
         const password = e.currentTarget["password"].value;
+
+        const validation = logInSchema.safeParse({ email, password });
+        if (!validation.success) {
+            const errors = validation.error.flatten().fieldErrors;
+            const errorMessage =
+                errors.email?.[0] || errors.password?.[0] || "Invalid input.";
+            toast.error(errorMessage, { position: "top-center" });
+            setLoading(false);
+            return;
+        }
+
         try {
             const res = await fetch("/api/auth/login", {
                 method: "POST",
                 body: JSON.stringify({ email, password }),
                 headers: { "Content-Type": "application/json" }
             });
+            const data = await res.json();
+
             if (res.ok) {
-                const token = await res.text();
-                localStorage.setItem("auth-token", token);
+                localStorage.setItem("auth-token", data.token);
+                toast.success("Logged in successfully", {
+                    position: "top-center",
+                });
                 router.push("/");
             } else {
-                toast.error("Invalid email or password!", {
+                toast.error(data.error ||"Invalid email or password!", {
                     position: "top-center"
                 });
             }
@@ -47,7 +64,7 @@ const LoginForm = () => {
                 backgroundRepeat: "no-repeat"
             }}
         >
-            <div className="bg-opacity-80 m-17 w-full max-w-md space-y-6 rounded-lg p-6 shadow-md backdrop-blur-md">
+            <form onSubmit={handleSubmit} className="bg-opacity-80 m-17 w-full max-w-md space-y-6 rounded-lg p-6 shadow-md backdrop-blur-md">
                 <h1 className="mb-4 text-center text-2xl font-bold text-white">
                     Log In
                 </h1>
@@ -73,14 +90,12 @@ const LoginForm = () => {
                     </div>
                 </div>
                 <div className="space-y-2">
-                    <div className="flex items-center justify-between text-white">
-                        <label
-                            htmlFor="password"
-                            className="block text-sm font-medium text-white"
-                        >
-                            Password
-                        </label>
-                    </div>
+                    <label
+                        htmlFor="password"
+                        className="block text-sm font-medium text-white"
+                    >
+                        Password
+                    </label>
                     <div className="relative">
                         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                             <Lock className="text-white" size={20} />
@@ -128,7 +143,7 @@ const LoginForm = () => {
                         Sign up
                     </Link>
                 </div>
-            </div>
+            </form>
         </div>
     );
 };
