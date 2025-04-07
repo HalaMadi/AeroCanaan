@@ -26,7 +26,7 @@ export default function RootLayout({
                     poppins.variable
                 )}
             >
-                <ThemeProvider defaultTheme="system" enableSystem>
+                <ThemeProvider defaultTheme="light" enableSystem>
                     <Navbar />
                     {children}
                 </ThemeProvider>
