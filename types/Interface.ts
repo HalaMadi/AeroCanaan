@@ -1,11 +1,20 @@
-export type Trip = {
-    id: number;
+export interface Trip {
+    id: string;
     title: string;
-    price: string;
-    duration: string;
-    rating: number;
     image: string;
-};
+    rating: number;
+    location: string;
+    originalPrice: number;
+    discountPrice: number;
+    // Removed 'featured' to avoid redundancy with 'isFeatured'
+    price: string;
+    duration:number;
+    description: string;
+    isFeatured: boolean;
+    hasDiscount: boolean;
+    isSpecialOffer: boolean;
+}
+
 export interface RouteCardProps {
     id: number;
     name: string;
