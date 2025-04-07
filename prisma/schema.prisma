@@ -44,6 +44,8 @@ model Trip {
   isSpecialOffer Boolean   @default(false)
   hasDiscount    Boolean   @default(false)
   bookings       Booking[]
+  placeId        String?
+  place          Place?     @relation(fields: [placeId], references: [id])
 }
 
 model Booking {
@@ -56,12 +58,18 @@ model Booking {
 }
 
 model Place {
-  id       String @id @default(uuid())
-  name     String
-  slug     String @unique
-  image    String
-  rating   Float
-  location String
+  id                String  @id @default(uuid())
+  name              String
+  slug              String  @unique
+  category          String
+  shortDesc         String
+  fullDesc          String
+  location          String
+  bestTimeToVisit   String
+  accessibilityInfo String
+  localTips         String
+  images            Image[]
+  trips             Trip[]
 }
 
 enum Role {
@@ -73,4 +81,11 @@ enum BookingStatus {
   PENDING
   CONFIRMED
   CANCELLED
+}
+
+model Image {
+  id      String @id @default(uuid())
+  url     String
+  place   Place  @relation(fields: [placeId], references: [id])
+  placeId String
 }

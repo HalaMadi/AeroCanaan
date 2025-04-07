@@ -1,4 +1,4 @@
-import DiscoverCard from "@/components/discover/discoverCard";
+import DiscoverCard from "@/components/discover/DiscoverCard";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { destinations } from "@/data/data";
@@ -63,7 +63,6 @@ const Discover = () => {
                         </TabsTrigger>
                     </TabsList>
                 </div>
-
                 {/* All Destinations Tab */}
                 <TabsContent value="all" className="space-y-8">
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -75,7 +74,6 @@ const Discover = () => {
                         ))}
                     </div>
                 </TabsContent>
-
                 {/* Category-specific Tabs */}
                 {["historical", "religious", "natural", "cultural"].map(
                     (category) => (
@@ -100,9 +98,8 @@ const Discover = () => {
                     )
                 )}
             </Tabs>
-
             {/* Call to Action */}
-            <div className="mx-auto mt-16 max-w-4xl rounded-xl bg-amber-50 p-8 text-center">
+            <div className="mx-auto mt-16  rounded-xl bg-amber-50 p-8 text-center">
                 <h3 className="mb-4 text-2xl font-bold text-gray-900">
                     Ready to Experience Palestine?
                 </h3>
