@@ -10,7 +10,6 @@ const poppins = Poppins({
     weight: ["100", "400", "700"],
     display: "swap"
   });
-  
 export const metadata = {
     title: "AeroCanaan Explorer",
     description: "Explore the beautiful destinations in Palestine"
