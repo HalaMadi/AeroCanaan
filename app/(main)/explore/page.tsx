@@ -24,7 +24,6 @@ export default function ExplorePlaces() {
     const vacationPlans = trips.filter((trip) => trip.hasDiscount);
     return (
         <main className="min-h-screen bg-white">
-            {/* Featured Destinations Section */}
             <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
                 <div className="mb-8 text-center">
                     <h2 className="mb-2 text-3xl font-bold">
@@ -47,7 +46,7 @@ export default function ExplorePlaces() {
                             <div className="relative h-48">
                                 <Image
                                     src={trip.image || "/placeholder.svg"}
-                                    alt={trip.title}
+                                    alt={trip.name}
                                     fill
                                     className="object-cover"
                                 />
@@ -55,7 +54,7 @@ export default function ExplorePlaces() {
                             <div className="p-4">
                                 <div className="mb-2 flex items-center justify-between">
                                     <h3 className="text-lg font-semibold">
-                                        {trip.title}
+                                        {trip.name}
                                     </h3>
                                     <div className="flex items-center">
                                         <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
@@ -136,7 +135,7 @@ export default function ExplorePlaces() {
                             <div className="relative h-56">
                                 <Image
                                     src={plan.image || "/placeholder.svg"}
-                                    alt={plan.title}
+                                    alt={plan.name}
                                     fill
                                     className="object-cover"
                                 />
@@ -144,7 +143,7 @@ export default function ExplorePlaces() {
                             <div className="bg-gray-50 p-4">
                                 <div className="mb-2 flex items-center justify-between">
                                     <h3 className="font-semibold">
-                                        {plan.title}
+                                        {plan.name}
                                     </h3>
                                     <span className="font-bold text-orange-500">
                                         ${plan.price}
@@ -168,7 +167,6 @@ export default function ExplorePlaces() {
                     ))}
                 </div>
             </section>
-
             {/* Special Offers Section */}
             <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
                 <div className="mb-8 flex items-end justify-between">
@@ -182,7 +180,6 @@ export default function ExplorePlaces() {
                         Check out our special offer and discounts
                     </p>
                 </div>
-
                 <div className="mb-4 flex gap-4">
                     <button className="flex h-10 w-10 items-center justify-center rounded-md bg-gray-900 text-white">
                         <ChevronLeft className="h-5 w-5" />
@@ -191,7 +188,6 @@ export default function ExplorePlaces() {
                         <ChevronRight className="h-5 w-5" />
                     </button>
                 </div>
-
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                     {specialOffers.map((offer) => (
                         <div
@@ -201,14 +197,14 @@ export default function ExplorePlaces() {
                             <div className="relative h-56">
                                 <Image
                                     src={offer.image || "/placeholder.svg"}
-                                    alt={offer.title}
+                                    alt={offer.name}
                                     fill
                                     className="object-cover"
                                 />
                             </div>
                             <div className="bg-gray-50 p-5">
                                 <h3 className="mb-2 text-lg font-semibold">
-                                    {offer.title}
+                                    {offer.name}
                                 </h3>
                                 <div className="mb-3 flex">
                                     {[1, 2, 3, 4, 5].map((star) => (

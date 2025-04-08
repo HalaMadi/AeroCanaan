@@ -23,10 +23,10 @@ import {
     Map
 } from "lucide-react";
 import Image from "next/image";
-import { Destination } from "@/data/data";
+import { Place } from "@/types/Interface";
 
 type Props = {
-    destination: Destination;
+    destination: Place;
     children?: React.ReactNode;
 };
 
@@ -80,22 +80,21 @@ export default function DestinationDialog({ children, destination }: Props) {
                         <div className="relative h-64 w-full overflow-hidden rounded-lg">
                             <Image
                                 src={
-                                    destination.images[0] || "/placeholder.svg"
+                                    destination.images[0]?.url ||
+                                    "/placeholder.svg"
                                 }
                                 alt={destination.name}
                                 fill
                                 className="object-cover"
                             />
                         </div>
-
                         <div className="space-y-4">
                             <h3 className="text-lg font-semibold">
                                 About {destination.name}
                             </h3>
                             <p className="text-gray-600">
-                                {destination.fullDescription}
+                                {destination.fullDesc}
                             </p>
-
                             {destination.historicalSignificance && (
                                 <div className="mt-4">
                                     <h4 className="font-semibold text-gray-900">
@@ -106,7 +105,6 @@ export default function DestinationDialog({ children, destination }: Props) {
                                     </p>
                                 </div>
                             )}
-
                             {destination.culturalImportance && (
                                 <div className="mt-4">
                                     <h4 className="font-semibold text-gray-900">
@@ -117,7 +115,6 @@ export default function DestinationDialog({ children, destination }: Props) {
                                     </p>
                                 </div>
                             )}
-
                             <div className="mt-4 rounded-lg border border-amber-100 bg-amber-50/50 p-4">
                                 <h4 className="flex items-center font-semibold text-gray-900">
                                     <Info
@@ -173,7 +170,6 @@ export default function DestinationDialog({ children, destination }: Props) {
                             </div>
                         </div>
                     </TabsContent>
-
                     {/* Gallery Tab */}
                     <TabsContent value="gallery" className="mt-4">
                         <div className="grid grid-cols-2 gap-4">
@@ -183,7 +179,7 @@ export default function DestinationDialog({ children, destination }: Props) {
                                     className="relative h-48 overflow-hidden rounded-lg"
                                 >
                                     <Image
-                                        src={image || "/placeholder.svg"}
+                                        src={image.url || "/placeholder.svg"}
                                         alt={`${destination.name} - Image ${index + 1}`}
                                         fill
                                         className="object-cover"
@@ -203,7 +199,6 @@ export default function DestinationDialog({ children, destination }: Props) {
                                     />
                                     Available Tours to {destination.name}
                                 </h3>
-
                                 {destination.trips ? (
                                     <div className="space-y-4">
                                         {destination.trips.map(
@@ -243,21 +238,29 @@ export default function DestinationDialog({ children, destination }: Props) {
                                                                 size={14}
                                                                 className="mr-1"
                                                             />
-                                                            {trip.nextAvailable}
+                                                            {trip.startDate
+                                                                ? new Date(
+                                                                      trip.startDate
+                                                                  ).toLocaleDateString(
+                                                                      "en-US",
+                                                                      {
+                                                                          year: "numeric",
+                                                                          month: "long",
+                                                                          day: "numeric"
+                                                                      }
+                                                                  )
+                                                                : "Date not available"}
+                                                            {" - "}
                                                         </div>
                                                         <div className="flex items-center">
                                                             <Users
                                                                 size={14}
                                                                 className="mr-1"
                                                             />
-                                                            Max{" "}
-                                                            {
-                                                                trip.maxParticipants
-                                                            }{" "}
+                                                            Max {trip.seats}{" "}
                                                             people
                                                         </div>
                                                     </div>
-
                                                     <div className="mt-4">
                                                         <Button className="w-full bg-[#FA7436] text-white hover:bg-[#e56a30] sm:w-auto">
                                                             Book This Tour
@@ -292,9 +295,9 @@ export default function DestinationDialog({ children, destination }: Props) {
                                     Coming Soon
                                 </h3>
                                 <p className="mx-auto max-w-md text-gray-600">
-                                    We're currently developing tours to this
-                                    destination. Sign up for our newsletter to
-                                    be notified when trips become available.
+                                    We&apos;re currently developing tours to
+                                    this destination. Sign up for our newsletter
+                                    to be notified when trips become available.
                                 </p>
                                 <Button className="mt-4 bg-[#FA7436] text-white hover:bg-[#e56a30]">
                                     Join Waiting List

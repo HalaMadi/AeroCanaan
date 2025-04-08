@@ -45,7 +45,7 @@ model Trip {
   hasDiscount    Boolean   @default(false)
   bookings       Booking[]
   placeId        String?
-  place          Place?     @relation(fields: [placeId], references: [id])
+  place          Place?    @relation(fields: [placeId], references: [id])
 }
 
 model Booking {
@@ -58,18 +58,20 @@ model Booking {
 }
 
 model Place {
-  id                String  @id @default(uuid())
-  name              String
-  slug              String  @unique
-  category          String
-  shortDesc         String
-  fullDesc          String
-  location          String
-  bestTimeToVisit   String
-  accessibilityInfo String
-  localTips         String
-  images            Image[]
-  trips             Trip[]
+  id                     String  @id @default(uuid())
+  name                   String
+  slug                   String  @unique
+  category               String
+  shortDesc              String
+  fullDesc               String
+  location               String
+  bestTimeToVisit        String
+  accessibilityInfo      String
+  historicalSignificance String?
+  culturalImportance     String?
+  localTips              String
+  images                 Image[]
+  trips                  Trip[]
 }
 
 enum Role {

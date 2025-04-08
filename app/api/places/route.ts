@@ -53,7 +53,11 @@ export async function GET() {
                 trips: true
             }
         });
-        return NextResponse.json(places, { status: 200 });
+        const enrichedPlaces = places.map((place) => ({
+            ...place,
+            availableTrips: place.trips ? place.trips.length : 0
+        }));
+        return NextResponse.json(enrichedPlaces, { status: 200 });
     } catch (error) {
         console.error("Error fetching places:", error);
         return NextResponse.json(

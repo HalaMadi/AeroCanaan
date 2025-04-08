@@ -1,11 +1,28 @@
+"use client";
 import DiscoverCard from "@/components/discover/DiscoverCard";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { destinations } from "@/data/data";
+import { Place } from "@/types/Interface";
 import { TabsContent } from "@radix-ui/react-tabs";
+import axios from "axios";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
+const categories = ["historical", "religious", "natural", "cultural"];
 const Discover = () => {
+    const [destinations, setDestinations] = useState<Place[]>([]);
+
+    useEffect(() => {
+        const fetchDestinations = async () => {
+            try {
+                const response = await axios.get("/api/places");
+                setDestinations(response.data);
+            } catch (error) {
+                console.error("Error fetching destinations:", error);
+            }
+        };
+        fetchDestinations();
+    }, []);
     return (
         <main className="min-h-screen">
             <section className="relative h-[40vh] min-h-[300px] w-full overflow-hidden">
@@ -63,7 +80,6 @@ const Discover = () => {
                         </TabsTrigger>
                     </TabsList>
                 </div>
-                {/* All Destinations Tab */}
                 <TabsContent value="all" className="space-y-8">
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                         {destinations.map((destination) => (
@@ -74,32 +90,26 @@ const Discover = () => {
                         ))}
                     </div>
                 </TabsContent>
-                {/* Category-specific Tabs */}
-                {["historical", "religious", "natural", "cultural"].map(
-                    (category) => (
-                        <TabsContent
-                            key={category}
-                            value={category}
-                            className="space-y-8"
-                        >
-                            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                                {destinations
-                                    .filter(
-                                        (dest) => dest.category === category
-                                    )
-                                    .map((destination) => (
-                                        <DiscoverCard
-                                            key={destination.id}
-                                            destination={destination}
-                                        />
-                                    ))}
-                            </div>
-                        </TabsContent>
-                    )
-                )}
+                {categories.map((category) => (
+                    <TabsContent
+                        key={category}
+                        value={category}
+                        className="space-y-8"
+                    >
+                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                            {destinations
+                                .filter((dest) => dest.category === category)
+                                .map((destination) => (
+                                    <DiscoverCard
+                                        key={destination.id}
+                                        destination={destination}
+                                    />
+                                ))}
+                        </div>
+                    </TabsContent>
+                ))}
             </Tabs>
-            {/* Call to Action */}
-            <div className="mx-auto mt-16  rounded-xl bg-amber-50 p-8 text-center">
+            <div className="mx-auto mt-16 rounded-xl bg-amber-50 p-8 text-center">
                 <h3 className="mb-4 text-2xl font-bold text-gray-900">
                     Ready to Experience Palestine?
                 </h3>
