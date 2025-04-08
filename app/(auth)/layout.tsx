@@ -1,15 +1,13 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { Poppins } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { cn } from "@/lib/utils";
-import Navbar from "@/components/common/Navbar";
 
 
 const poppins = Poppins({
     variable: "--font-poppins",
-    weight: ["100", "400", "700"],
-    display: "swap"
-  });
+    weight: ["100", "400", "700"]
+});
 export const metadata = {
     title: "AeroCanaan Explorer",
     description: "Explore the beautiful destinations in Palestine"
@@ -27,8 +25,7 @@ export default function RootLayout({
                     poppins.variable
                 )}
             >
-                <ThemeProvider defaultTheme="light" enableSystem>
-                    <Navbar />
+                <ThemeProvider defaultTheme="system" enableSystem>
                     {children}
                 </ThemeProvider>
             </body>
