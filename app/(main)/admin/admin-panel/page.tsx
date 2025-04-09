@@ -1,10 +1,24 @@
 "use client"
 
-import { useState } from "react"
+import { redirect } from "next/navigation"
+import { useEffect, useState } from "react"
+import { toast } from "react-toastify"
+import Loading from "../loading"
 
 const AdminDashboard = () => {
   const [filter, setFilter] = useState("All")
+  const [loading, setLoading] = useState(true)
 
+useEffect(() => {
+  const token = localStorage.getItem("auth-token")
+  const user= localStorage.getItem("userRole") 
+  if(!token ||user !== "admin"){
+    toast.error("You are not authorized to access this page");
+    redirect("/")
+  }else{
+    setLoading(false)
+  }
+},[])
   const allTrips = [
     { id: 1, user: "Jane Smith", destination: "Jerusalem", date: "2023-07-20", status: "Approved" },
     { id: 2, user: "Mike Johnson", destination: "Jenin", date: "2023-08-10", status: "Cancelled" },
@@ -20,9 +34,9 @@ const AdminDashboard = () => {
       status: "Pending",
     },
   ]
-
   const filteredTrips = filter === "All" ? allTrips : allTrips.filter((trip) => trip.status === filter)
 
+  if (loading) return <Loading/>
   return (
     <div className="flex min-h-screen bg-gray-50">
       <aside className="w-64 bg-white shadow p-4 flex flex-col justify-between">
