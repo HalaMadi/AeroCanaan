@@ -40,7 +40,6 @@ const AdminDashboard = () => {
           </nav>
         </div>
       </aside>
-
       <main className="flex-1 p-8 space-y-12">
         <section>
           <h2 className="text-xl font-semibold mb-4">Pending Requests</h2>
@@ -73,12 +72,10 @@ const AdminDashboard = () => {
             </table>
           </div>
         </section>
-
         <section>
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-semibold">All Trips</h2>
           </div>
-
           <div className="flex gap-2 mb-4">
             {["All", "Approved", "Cancelled"].map((type) => (
               <button
@@ -91,7 +88,6 @@ const AdminDashboard = () => {
               </button>
             ))}
           </div>
-
           <div className="bg-white shadow rounded p-4 overflow-x-auto">
             <table className="w-full text-left">
               <thead className="bg-gray-100 text-gray-600">
