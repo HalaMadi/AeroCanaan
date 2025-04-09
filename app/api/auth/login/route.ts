@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
                 "JWT_SECRET_KEY is not defined in the environment variables."
             );
         }
-        const token = jwt.sign({ userId: user.id, email }, jwtSecret, {
+        const token = jwt.sign({ userId: user.id, email ,firstName: user.firstName}, jwtSecret, {
             expiresIn: "1d"
         });
         return NextResponse.json(

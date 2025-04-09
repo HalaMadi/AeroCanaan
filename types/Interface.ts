@@ -1,6 +1,6 @@
 export interface Trip {
     id: string;
-    name: string;
+    title: string; // Ensure all consumers use 'title' instead of 'name'
     image: string;
     rating: number;
     location: string;
@@ -63,4 +63,13 @@ export type Place = {
     trips?: Trip[];
     historicalSignificance?: string;
     culturalImportance?: string;
+};
+
+export type User = {
+    id: string;
+    name: string;
+    email: string;
+    password: string;
+    role: string;
+    profilePicture?: string;
 };

@@ -28,7 +28,7 @@ model Trip {
   id             String    @id @default(uuid())
   title          String
   slug           String
-  destination    String
+  location    String
   duration       Int
   start_date     DateTime
   end_date       DateTime
