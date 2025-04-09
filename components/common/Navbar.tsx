@@ -91,7 +91,7 @@ const extendedNavItems = [
                     {user ? (
                         <>
                             <span className="font-bold text-[#222222]">
-                                Welcome, {user.firstName.toLocaleUpperCase()}
+                                Welcome, {user.firstName}
                             </span>
                             <button
                                 onClick={handleLogout}

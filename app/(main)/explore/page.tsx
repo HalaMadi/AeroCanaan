@@ -4,6 +4,7 @@ import { Star, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 import { Trip } from "@/types/Interface";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import TripDialog from "@/components/TripDialog/TripDialog";
 
 export default function ExplorePlaces() {
     const [trips, setTrips] = useState<Trip[]>([]);
@@ -48,7 +49,7 @@ export default function ExplorePlaces() {
                                     src={trip.image || "/placeholder.svg"}
                                     alt={trip.title}
                                     fill
-                                    className="object-cover"
+                                    className="object-fit"
                                 />
                             </div>
                             <div className="p-4">
@@ -62,6 +63,7 @@ export default function ExplorePlaces() {
                                             {trip.rating}
                                         </span>
                                     </div>
+                                    
                                 </div>
                                 <div className="mb-3 flex items-center text-sm text-gray-500">
                                     <MapPin className="mr-1 h-3.5 w-3.5" />
@@ -76,7 +78,8 @@ export default function ExplorePlaces() {
                                             ${trip.discountPrice}
                                         </span>
                                     </div>
-                                </div>
+                                </div>   
+                                <TripDialog trip={trip} />                         
                             </div>
                         </div>
                     ))}
@@ -162,6 +165,7 @@ export default function ExplorePlaces() {
                                         </span>
                                     </div>
                                 </div>
+                              
                             </div>
                         </div>
                     ))}
