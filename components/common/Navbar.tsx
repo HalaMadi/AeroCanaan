@@ -23,6 +23,11 @@ const Navbar = () => {
     const [user, setUser] = useState<User | null>(null);
     const pathName = usePathname();
     const router = useRouter();
+    const userRole = localStorage.getItem("userRole");
+    if (userRole == "admin") {
+        navItems.push({ key: "6", label: "Dashboard", href: "/admin-panel" });
+    }
+
     useEffect(() => {
         const token = localStorage.getItem("auth-token");
         if (token) {
@@ -36,11 +41,13 @@ const Navbar = () => {
             }
         }
     }, []);
+
     const handleLogout = () => {
         localStorage.removeItem("auth-token");
         setUser(null);
         router.push("/login");
     };
+    
     return (
         <div className="sticky top-0 z-50 w-full">
             <div className="mx-auto flex w-full items-center justify-between bg-white px-4 md:px-6">
