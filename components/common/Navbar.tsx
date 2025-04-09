@@ -23,31 +23,41 @@ const Navbar = () => {
     const [user, setUser] = useState<User | null>(null);
     const pathName = usePathname();
     const router = useRouter();
-    const userRole = localStorage.getItem("userRole");
-    if (userRole == "admin") {
-        navItems.push({ key: "6", label: "Dashboard", href: "/admin-panel" });
-    }
+    const [userRole, setUserRole] = useState<string | null>(null);
+
+
 
     useEffect(() => {
-        const token = localStorage.getItem("auth-token");
-        if (token) {
-            try {
-                const decoded = jwtDecode<User>(token);
-                setUser(decoded);
-                console.log("decoded token", decoded);
-            } catch (err) {
-                console.error("Invalid token");
-                localStorage.removeItem("auth-token");
+        if (typeof window !== "undefined") {
+            const role = localStorage.getItem("userRole");
+            setUserRole(role);
+
+            const token = localStorage.getItem("auth-token");
+            if (token) {
+                try {
+                    const decoded = jwtDecode<User>(token);
+                    setUser(decoded);
+                    console.log("decoded token", decoded);
+                } catch (err) {
+                    console.error("Invalid token");
+                    localStorage.removeItem("auth-token");
+                }
             }
         }
     }, []);
 
     const handleLogout = () => {
-        localStorage.removeItem("auth-token");
-        setUser(null);
-        router.push("/login");
+        if (typeof window !== "undefined") {
+            localStorage.removeItem("auth-token");
+            setUser(null);
+            router.push("/login");
+        }
     };
-    
+
+const extendedNavItems = [
+    ...navItems,
+    ...(userRole === "admin" ? [{ key: "6", label: "Dashboard", href: "/admin/admin-panel" }] : [])
+]
     return (
         <div className="sticky top-0 z-50 w-full">
             <div className="mx-auto flex w-full items-center justify-between bg-white px-4 md:px-6">
@@ -63,7 +73,7 @@ const Navbar = () => {
                     </p>
                 </Link>
                 <nav className="hidden space-x-6 lg:flex">
-                    {navItems.map((item) => (
+                    {extendedNavItems.map((item) => (
                         <Link
                             key={item.key}
                             href={item.href}
@@ -122,7 +132,7 @@ const Navbar = () => {
                         className="w-[300px] bg-white p-6"
                     >
                         <div className="flex flex-col gap-6 pt-6">
-                            {navItems.map((item) => (
+                            {extendedNavItems.map((item) => (
                                 <Link
                                     key={item.key}
                                     href={item.href}
