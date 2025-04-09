@@ -19,9 +19,22 @@ CREATE TABLE "Trip" (
     "start_date" DATETIME NOT NULL,
     "end_date" DATETIME NOT NULL,
     "price" REAL NOT NULL,
+    "originalPrice" REAL,
+    "discountPrice" REAL,
     "seats" INTEGER NOT NULL,
     "image" TEXT NOT NULL,
-    "rating" INTEGER NOT NULL
+    "rating" INTEGER NOT NULL,
+    "featured" BOOLEAN NOT NULL DEFAULT false,
+    "description" TEXT,
+    "isFeatured" BOOLEAN NOT NULL DEFAULT false,
+    "isSpecialOffer" BOOLEAN NOT NULL DEFAULT false,
+<<<<<<<< HEAD:prisma/migrations/20250408073238_add_historical_and_cultural_fields/migration.sql
+    "hasDiscount" BOOLEAN NOT NULL DEFAULT false,
+    "placeId" TEXT,
+    CONSTRAINT "Trip_placeId_fkey" FOREIGN KEY ("placeId") REFERENCES "Place" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+========
+    "hasDiscount" BOOLEAN NOT NULL DEFAULT false
+>>>>>>>> 9372b714926593f7271d3581f8c5ecf6e3d94d66:prisma/migrations/20250407191508_init/migration.sql
 );
 
 -- CreateTable
@@ -39,9 +52,23 @@ CREATE TABLE "Place" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
-    "image" TEXT NOT NULL,
-    "rating" REAL NOT NULL,
-    "location" TEXT NOT NULL
+    "category" TEXT NOT NULL,
+    "shortDesc" TEXT NOT NULL,
+    "fullDesc" TEXT NOT NULL,
+    "location" TEXT NOT NULL,
+    "bestTimeToVisit" TEXT NOT NULL,
+    "accessibilityInfo" TEXT NOT NULL,
+    "historicalSignificance" TEXT,
+    "culturalImportance" TEXT,
+    "localTips" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Image" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "url" TEXT NOT NULL,
+    "placeId" TEXT NOT NULL,
+    CONSTRAINT "Image_placeId_fkey" FOREIGN KEY ("placeId") REFERENCES "Place" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateIndex
