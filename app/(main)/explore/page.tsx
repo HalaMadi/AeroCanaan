@@ -78,7 +78,8 @@ export default function ExplorePlaces() {
                                             ${trip.discountPrice}
                                         </span>
                                     </div>
-                                </div>                            
+                                </div>   
+                                <TripDialog trip={trip} />                         
                             </div>
                         </div>
                     ))}
@@ -164,6 +165,7 @@ export default function ExplorePlaces() {
                                         </span>
                                     </div>
                                 </div>
+                              
                             </div>
                         </div>
                     ))}
