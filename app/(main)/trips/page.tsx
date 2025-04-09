@@ -33,7 +33,7 @@ export default function TripsPage() {
             <div className="p-4">
               <h2 className="text-xl font-semibold text-gray-900">{trip.title}</h2>
               <p className="text-orange-500 text-lg font-bold">{trip.price}</p>
-              <p className="text-gray-500">{trip.duration}</p>
+              <p className="text-gray-500">{trip.duration} Days</p>
               <p className="text-yellow-500 font-bold">⭐ {trip.rating}</p>
               <div className="flex justify-between mt-4">
               <TripDialog trip={trip} />
