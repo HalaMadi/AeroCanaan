@@ -29,7 +29,7 @@ export default function TripDialog({ trip }: TripDialogProps) {
     try {
       const token = localStorage.getItem("auth-token"); 
       if (!token) {
-        setMessage("You must be logged in to book.");
+        setMessage("You must be logged in.");
         setLoading(false);
         return;
       }
