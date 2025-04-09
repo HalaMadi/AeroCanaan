@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { useState } from "react";
+import {  useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import Link from "next/link";
@@ -12,7 +12,6 @@ import { logInSchema } from "@/lib/validationSchemas";
 const LoginForm = () => {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
