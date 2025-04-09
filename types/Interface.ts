@@ -1,5 +1,5 @@
 export interface Trip {
-    id: string;
+    id: string;//UUID
     title: string; // Ensure all consumers use 'title' instead of 'name'
     image: string;
     rating: number;
