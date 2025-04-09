@@ -46,7 +46,7 @@ export default function ExplorePlaces() {
                             <div className="relative h-48">
                                 <Image
                                     src={trip.image || "/placeholder.svg"}
-                                    alt={trip.name}
+                                    alt={trip.title}
                                     fill
                                     className="object-cover"
                                 />
@@ -54,7 +54,7 @@ export default function ExplorePlaces() {
                             <div className="p-4">
                                 <div className="mb-2 flex items-center justify-between">
                                     <h3 className="text-lg font-semibold">
-                                        {trip.name}
+                                        {trip.title}
                                     </h3>
                                     <div className="flex items-center">
                                         <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
@@ -135,7 +135,7 @@ export default function ExplorePlaces() {
                             <div className="relative h-56">
                                 <Image
                                     src={plan.image || "/placeholder.svg"}
-                                    alt={plan.name}
+                                    alt={plan.title}
                                     fill
                                     className="object-cover"
                                 />
@@ -143,7 +143,7 @@ export default function ExplorePlaces() {
                             <div className="bg-gray-50 p-4">
                                 <div className="mb-2 flex items-center justify-between">
                                     <h3 className="font-semibold">
-                                        {plan.name}
+                                        {plan.title}
                                     </h3>
                                     <span className="font-bold text-orange-500">
                                         ${plan.price}
@@ -197,14 +197,14 @@ export default function ExplorePlaces() {
                             <div className="relative h-56">
                                 <Image
                                     src={offer.image || "/placeholder.svg"}
-                                    alt={offer.name}
+                                    alt={offer.title}
                                     fill
                                     className="object-cover"
                                 />
                             </div>
                             <div className="bg-gray-50 p-5">
                                 <h3 className="mb-2 text-lg font-semibold">
-                                    {offer.name}
+                                    {offer.title}
                                 </h3>
                                 <div className="mb-3 flex">
                                     {[1, 2, 3, 4, 5].map((star) => (
