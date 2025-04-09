@@ -49,7 +49,7 @@ export default function ExplorePlaces() {
                                     src={trip.image || "/placeholder.svg"}
                                     alt={trip.title}
                                     fill
-                                    className="object-cover"
+                                    className="object-fit"
                                 />
                             </div>
                             <div className="p-4">
