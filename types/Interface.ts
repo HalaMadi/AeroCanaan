@@ -1,6 +1,6 @@
 export interface Trip {
-    id: string;//UUID
-    title: string; // Ensure all consumers use 'title' instead of 'name'
+    id: string;
+    title: string; 
     image: string;
     rating: number;
     location: string;
@@ -13,6 +13,7 @@ export interface Trip {
     hasDiscount: boolean;
     isSpecialOffer: boolean;
     seats: number;
+    bookedSeats: number;
     startDate: Date;
     endDate: Date;
 }
@@ -67,7 +68,8 @@ export type Place = {
 
 export type User = {
     id: string;
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     password: string;
     role: string;

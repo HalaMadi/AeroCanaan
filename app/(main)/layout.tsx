@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google"
 import "../globals.css"
 import { cn } from "@/lib/utils"
 import Navbar from "@/components/common/Navbar"
+import { ToastContainer } from "react-toastify"
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -31,6 +32,7 @@ export default function RootLayout({
             <div className="flex-1">{children}</div>
           </div>
         </ThemeProvider>
+        <ToastContainer />
       </body>
     </html>
   )

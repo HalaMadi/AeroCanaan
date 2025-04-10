@@ -30,7 +30,6 @@ const Navbar = () => {
         if (typeof window !== "undefined") {
             const role = localStorage.getItem("userRole");
             setUserRole(role);
-
             const token = localStorage.getItem("auth-token");
             if (token) {
                 try {
@@ -54,8 +53,8 @@ const Navbar = () => {
 
     const extendedNavItems = [
         ...navItems,
-        ...(userRole === "admin"
-            ? [{ key: "6", label: "Dashboard", href: "/admin/admin-panel" }]
+        ...(userRole === "ADMIN"
+            ? [{ key: "6", label: "Dashboard", href: "/admin" }]
             : [])
     ];
     return (
