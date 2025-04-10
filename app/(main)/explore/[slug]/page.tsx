@@ -184,7 +184,7 @@ export default function PlaceDetails({ params }: { params: { slug: string } }) {
               </div>
 
               <div className="mb-6">
-                <h3 className="font-semibold text-lg mb-3 text-foreground">What's Included</h3>
+                <h3 className="font-semibold text-lg mb-3 text-foreground">What&apos;s Included</h3>
                 <ul className="space-y-2">
                   {place.included.map((item, index) => (
                     <li key={index} className="flex items-start">
