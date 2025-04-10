@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react"
 
 export default function AboutPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4 md:p-24">
+    <main className="flex min-h-screen flex-col items-center justify-center p-4 md:p-24 bg-background">
       <div className="max-w-3xl mx-auto">
         <div className="mb-8">
           <Link href="/">
@@ -14,20 +14,20 @@ export default function AboutPage() {
             </Button>
           </Link>
         </div>
-        <h1 className="text-4xl font-bold mb-6">About AeroCanaan</h1>
+        <h1 className="text-4xl font-bold mb-6 text-foreground">About AeroCanaan</h1>
         <div className="prose dark:prose-invert">
-          <p className="text-lg">
+          <p className="text-lg text-foreground">
             AeroCanaan is a modern web application built with Next.js 15, React 19, and Tailwind CSS 4.0. This project
             demonstrates the latest features and best practices in web development.
           </p>
-          <h2 className="text-2xl font-semibold mt-8 mb-4">Our Mission</h2>
-          <p>
+          <h2 className="text-2xl font-semibold mt-8 mb-4 text-foreground">Our Mission</h2>
+          <p className="text-foreground">
             Our mission is to provide a seamless and intuitive user experience while leveraging cutting-edge
             technologies. We strive to create applications that are not only functional but also aesthetically pleasing
             and accessible to all users.
           </p>
-          <h2 className="text-2xl font-semibold mt-8 mb-4">Technologies Used</h2>
-          <ul className="list-disc pl-6 space-y-2">
+          <h2 className="text-2xl font-semibold mt-8 mb-4 text-foreground">Technologies Used</h2>
+          <ul className="list-disc pl-6 space-y-2 text-foreground">
             <li>Next.js 15.2.3</li>
             <li>React 19.0.0</li>
             <li>TypeScript</li>
@@ -39,4 +39,3 @@ export default function AboutPage() {
     </main>
   )
 }
-
