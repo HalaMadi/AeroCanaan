@@ -1,4 +1,4 @@
-import { destinations } from "@/data/data"
+import { destination } from "@/data/data"
 import { ArrowRight, Star } from "lucide-react"
 import { Card, CardContent } from "../ui/card"
 import Image from "next/image"
@@ -22,7 +22,7 @@ const PopularDestinations = () => {
         </div>
         {/* Cards */}
         <div className="flex flex-wrap justify-center gap-8">
-          {destinations.map((des) => (
+          {destination.map((des) => (
             <Card
               key={des.id}
               className="group relative w-92 overflow-hidden rounded-xl bg-card p-0 shadow-lg transition-all duration-300 hover:shadow-xl"

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import jwt from "jsonwebtoken";
 import { verifyToken } from "@/lib/auth";
 
 export async function GET(req: NextRequest) {
@@ -86,43 +85,3 @@ export async function PUT(req: NextRequest) {
     }
 }
 
-export async function DELETE(req: NextRequest) {
-    try {
-        const token = req.headers.get("token");
-        if (!token) {
-            return NextResponse.json(
-                { error: "Token not provided" },
-                { status: 401 }
-            );
-        }
-        const decoded = verifyToken(token);
-        if (!decoded || !decoded.userId) {
-            return NextResponse.json(
-                { error: "Invalid or expired token" },
-                { status: 401 }
-            );
-        }
-        const existingUser = await prisma.user.findUnique({
-            where: { id: decoded.userId }
-        });
-        if (!existingUser) {
-            return NextResponse.json(
-                { error: "User not found" },
-                { status: 404 }
-            );
-        }
-        await prisma.user.delete({
-            where: { id: decoded.userId }
-        });
-        return NextResponse.json(
-            { message: "User deleted successfully" },
-            { status: 200 }
-        );
-    } catch (error) {
-        console.error("Error deleting user:", error);
-        return NextResponse.json(
-            { error: "Failed to delete user" },
-            { status: 500 }
-        );
-    }
-}

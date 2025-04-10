@@ -14,14 +14,23 @@ CREATE TABLE "Trip" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "title" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
-    "destination" TEXT NOT NULL,
+    "location" TEXT NOT NULL,
     "duration" INTEGER NOT NULL,
     "start_date" DATETIME NOT NULL,
     "end_date" DATETIME NOT NULL,
     "price" REAL NOT NULL,
+    "originalPrice" REAL,
+    "discountPrice" REAL,
     "seats" INTEGER NOT NULL,
     "image" TEXT NOT NULL,
-    "rating" INTEGER NOT NULL
+    "rating" INTEGER NOT NULL,
+    "featured" BOOLEAN NOT NULL DEFAULT false,
+    "description" TEXT,
+    "isFeatured" BOOLEAN NOT NULL DEFAULT false,
+    "isSpecialOffer" BOOLEAN NOT NULL DEFAULT false,
+    "hasDiscount" BOOLEAN NOT NULL DEFAULT false,
+    "placeId" TEXT,
+    CONSTRAINT "Trip_placeId_fkey" FOREIGN KEY ("placeId") REFERENCES "Place" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -39,9 +48,23 @@ CREATE TABLE "Place" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
-    "image" TEXT NOT NULL,
-    "rating" REAL NOT NULL,
-    "location" TEXT NOT NULL
+    "category" TEXT NOT NULL,
+    "shortDesc" TEXT NOT NULL,
+    "fullDesc" TEXT NOT NULL,
+    "location" TEXT NOT NULL,
+    "bestTimeToVisit" TEXT NOT NULL,
+    "accessibilityInfo" TEXT NOT NULL,
+    "historicalSignificance" TEXT,
+    "culturalImportance" TEXT,
+    "localTips" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Image" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "url" TEXT NOT NULL,
+    "placeId" TEXT NOT NULL,
+    CONSTRAINT "Image_placeId_fkey" FOREIGN KEY ("placeId") REFERENCES "Place" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateIndex

@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { logInSchema } from "@/lib/validationSchemas";
+import { cookies } from "next/headers";
 
 const prisma = new PrismaClient();
 
@@ -38,13 +39,23 @@ export async function POST(req: NextRequest) {
                 "JWT_SECRET_KEY is not defined in the environment variables."
             );
         }
-        const token = jwt.sign({ userId: user.id, email }, jwtSecret, {
-            expiresIn: "1d"
+        const token = jwt.sign(
+            { userId: user.id, email, firstName: user.firstName },
+            jwtSecret,
+            {
+                expiresIn: "1d"
+            }
+        );
+        (await cookies()).set("auth-token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            maxAge: 60 * 60 * 24 // 1 day
         });
         return NextResponse.json(
             {
                 message: "Login successful",
-                token
+                token,
+                userRole: user.role
             },
             { status: 200 }
         );

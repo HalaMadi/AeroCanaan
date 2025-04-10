@@ -8,8 +8,9 @@ import Navbar from "@/components/common/Navbar"
 const poppins = Poppins({
   variable: "--font-poppins",
   weight: ["100", "400", "700"],
+    display: "swap",
   subsets: ["latin"],
-})
+  })
 
 export const metadata = {
   title: "AeroCanaan",

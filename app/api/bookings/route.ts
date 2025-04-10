@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
             );
         }
         const { tripId } = await request.json();
+        console.log(tripId);//qosay rote booking
         const trip = await prisma.trip.findUnique({
             where: { id: tripId },
             select: { seats: true }
