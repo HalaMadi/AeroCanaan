@@ -1,8 +1,7 @@
-export function formatDateRange(startDate: string, endDate: string): string {
+export function formatDateRange(startDate: Date, endDate: Date): string {
     const options: Intl.DateTimeFormatOptions = {
         month: "short", 
         day: "numeric", 
-        year: "numeric", 
     };
 
     const start = new Date(startDate).toLocaleDateString("en-US", options);

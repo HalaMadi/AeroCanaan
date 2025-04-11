@@ -14,8 +14,9 @@ export interface Trip {
     isSpecialOffer: boolean;
     seats: number;
     bookedSeats: number;
-    startDate: Date;
-    endDate: Date;
+    start_date: Date;
+    end_date: Date;
+    images: string[];
 }
 
 export interface RouteCardProps {
@@ -75,3 +76,4 @@ export type User = {
     role: string;
     profilePicture?: string;
 };
+
