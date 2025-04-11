@@ -1,16 +1,16 @@
-"use client"
-import DiscoverCard from "@/components/discover/DiscoverCard"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import type { Place } from "@/types/Interface"
-import { TabsContent } from "@radix-ui/react-tabs"
-import axios from "axios"
-import Image from "next/image"
-import { useEffect, useState } from "react"
-import Link from "next/link"
+"use client";
+import DiscoverCard from "@/components/discover/DiscoverCard";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import type { Place } from "@/types/Interface";
+import { TabsContent } from "@radix-ui/react-tabs";
+import axios from "axios";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const categories = ["Historical", "Religious", "Natural", "Cultural"];
 const Discover = () => {
-  const [destinations, setDestinations] = useState<Place[]>([])
+    const [destinations, setDestinations] = useState<Place[]>([]);
 
     useEffect(() => {
         const fetchDestinations = async () => {
@@ -24,9 +24,15 @@ const Discover = () => {
         fetchDestinations();
     }, []);
     return (
-      <main className="min-h-screen bg-background">
-      <section className="relative mb-12 h-[40vh] min-h-[300px] w-full overflow-hidden">
-        <Image src={"/aka.jpg"} fill priority alt={"Aka Landscape"} className="object-cover" />
+        <main className="bg-background min-h-screen">
+            <section className="relative mb-12 h-[40vh] min-h-[300px] w-full overflow-hidden">
+                <Image
+                    src={"/aka.jpg"}
+                    fill
+                    priority
+                    alt={"Aka Landscape"}
+                    className="object-cover"
+                />
 
                 <div className="absolute inset-0 flex items-center justify-center bg-black/50">
                     <div className="max-w-4xl px-4 text-center">
@@ -43,8 +49,8 @@ const Discover = () => {
             </section>
             <Tabs defaultValue="all" className="mx-auto mb-12 max-w-6xl">
                 <div className="mb-8 flex justify-center">
-                <TabsList className="bg-accent">
-                <TabsTrigger value="all" className="text-sm">
+                    <TabsList className="bg-accent">
+                        <TabsTrigger value="all" className="text-sm">
                             All Destinations
                         </TabsTrigger>
                         {categories.map((category) => (
@@ -91,12 +97,15 @@ const Discover = () => {
                     </TabsContent>
                 ))}
             </Tabs>
-            div className="mx-auto mt-16 rounded-xl bg-accent p-8 text-center">
-        <h3 className="mb-4 text-2xl font-bold text-foreground">Ready to Experience Palestine?</h3>
-        <p className="mx-auto mb-6 max-w-2xl text-muted-foreground">
-          Join one of our guided tours to explore these amazing destinations with knowledgeable local guides who will
-          bring the history and culture to life.
-        </p>
+            <div className="bg-accent mx-auto mt-16 rounded-xl p-8 text-center">
+                <h3 className="text-foreground mb-4 text-2xl font-bold">
+                    Ready to Experience Palestine?
+                </h3>
+                <p className="text-muted-foreground mx-auto mb-6 max-w-2xl">
+                    Join one of our guided tours to explore these amazing
+                    destinations with knowledgeable local guides who will bring
+                    the history and culture to life.
+                </p>
                 <Link
                     href={"/explore"}
                     className="inline-block rounded bg-[#FA7436] px-4 py-2 text-white hover:bg-[#e56a30]"
@@ -108,4 +117,4 @@ const Discover = () => {
     );
 };
 
-export default Discover
+export default Discover;
