@@ -1,5 +1,4 @@
 export interface Trip {
-    tags: any;
     id: string;
     title: string; 
     image: string;
@@ -78,3 +77,24 @@ export type User = {
     profilePicture?: string;
 };
 
+export interface Destination {
+    images: string[];
+    name: string;
+    category: string;
+    shortDescription: string;
+    location: string;
+    availableTrips: number;
+    historicalSignificance: string;
+    culturalImportance: string;
+    bestTimeToVisit: string;
+    localTips: string;
+    accessibilityInfo: string;
+    fullDescription: string;
+    trips: Trip[];
+    id: number;
+    longDescription?: string;
+    activities?: string[];
+    reviews?: number;  
+    rating?: number;
+    price?: number;
+  }
