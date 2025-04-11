@@ -58,13 +58,14 @@ const Navbar = () => {
     ];
     return (
         <div className="bg-background border-border sticky top-0 z-50 w-full border-b">
-            <div className="container mx-auto flex h-16 w-full items-center justify-between px-4 md:px-6">
+            <div className="container mx-auto flex h-20 w-full items-center justify-between px-4 md:px-6">
                 <Link href="/" className="flex items-center gap-2">
                     <Image
                         src="/logo.png"
                         alt="AeroCanaan Logo"
                         width={60}
                         height={80}
+                        className="mix-blend-darken"
                     />
                     <p className="text-foreground mt-4 -ml-6 text-sm font-bold">
                         AeroCanaan

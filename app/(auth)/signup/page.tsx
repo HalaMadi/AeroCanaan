@@ -3,8 +3,10 @@
 import type React from "react";
 import { useState } from "react";
 import Link from "next/link";
-import { Eye, EyeOff, User, Mail, Phone, Lock } from "lucide-react";
+import { Eye, EyeOff, User, Mail, Phone, Lock, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
     const router = useRouter();
@@ -40,10 +42,14 @@ const SignUp = () => {
             const result = await response.json();
             if (!response.ok) {
                 console.error(result);
-                alert("Signup failed: " + result.error);
+                toast.error("Sign up Failed!", {
+                    position: "top-center"
+                });
                 return;
             }
-            alert("Signup successful!");
+            toast.success("Sign Up successfully", {
+                position: "top-center"
+            });
             router.push("/login");
         } catch (error) {
             console.error("Error:", error);
@@ -55,7 +61,7 @@ const SignUp = () => {
 
     return (
         <div
-            className="flex min-h-screen items-center justify-center bg-cover bg-center px-2 py-8"
+            className="flex min-h-screen flex-col items-center justify-center bg-cover bg-center px-2 py-8"
             style={{
                 backgroundImage: "url('/aka.jpg')",
                 backgroundSize: "cover",
@@ -219,6 +225,14 @@ const SignUp = () => {
                         </Link>
                     </div>
                 </div>
+            </div>
+            <div className="mt-2">
+                <Link href="/">
+                    <Button variant="ghost" className="gap-2 text-white">
+                        <ArrowLeft className="h-4 w-4" />
+                        Back to Home
+                    </Button>
+                </Link>
             </div>
         </div>
     );
