@@ -10,7 +10,7 @@ import { testimonials } from "@/data/data"
 
 const Testimonials = () => {
   return (
-    <section className="relative py-20 dark:bg-gray-900">
+    <section className="relative py-20 dark:">
       <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-5 dark:opacity-[0.02]"></div>
       <div className="relative container mx-auto px-4">
         <div className="mx-auto mb-16 max-w-2xl text-center">

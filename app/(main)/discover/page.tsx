@@ -1,8 +1,7 @@
 "use client";
 import DiscoverCard from "@/components/discover/DiscoverCard";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Place } from "@/types/Interface";
+import type { Place } from "@/types/Interface";
 import { TabsContent } from "@radix-ui/react-tabs";
 import axios from "axios";
 import Image from "next/image";
@@ -25,7 +24,7 @@ const Discover = () => {
         fetchDestinations();
     }, []);
     return (
-        <main className="min-h-screen">
+        <main className="bg-background min-h-screen">
             <section className="relative mb-12 h-[40vh] min-h-[300px] w-full overflow-hidden">
                 <Image
                     src={"/aka.jpg"}
@@ -34,6 +33,7 @@ const Discover = () => {
                     alt={"Aka Landscape"}
                     className="object-cover"
                 />
+
                 <div className="absolute inset-0 flex items-center justify-center bg-black/50">
                     <div className="max-w-4xl px-4 text-center">
                         <h1 className="mb-4 text-3xl font-bold text-white md:text-5xl">
@@ -49,7 +49,7 @@ const Discover = () => {
             </section>
             <Tabs defaultValue="all" className="mx-auto mb-12 max-w-6xl">
                 <div className="mb-8 flex justify-center">
-                    <TabsList className="bg-amber-50/80">
+                    <TabsList className="bg-accent">
                         <TabsTrigger value="all" className="text-sm">
                             All Destinations
                         </TabsTrigger>
@@ -97,11 +97,11 @@ const Discover = () => {
                     </TabsContent>
                 ))}
             </Tabs>
-            <div className="mx-auto mt-16 rounded-xl bg-amber-50 p-8 text-center">
-                <h3 className="mb-4 text-2xl font-bold text-gray-900">
+            <div className="bg-accent mx-auto mt-16 rounded-xl p-8 text-center">
+                <h3 className="text-foreground mb-4 text-2xl font-bold">
                     Ready to Experience Palestine?
                 </h3>
-                <p className="mx-auto mb-6 max-w-2xl text-gray-600">
+                <p className="text-muted-foreground mx-auto mb-6 max-w-2xl">
                     Join one of our guided tours to explore these amazing
                     destinations with knowledgeable local guides who will bring
                     the history and culture to life.

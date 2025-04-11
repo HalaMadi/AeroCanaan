@@ -36,8 +36,20 @@ export function middleware(req: NextRequest) {
         }
         return NextResponse.next();
     }
+    if (req.nextUrl.pathname.startsWith("/user-profile")) {
+        if (!token) {
+            const response = NextResponse.redirect(new URL("/login", req.url));
+            response.cookies.set(
+                "error",
+                "You must be logged in to access this page.",
+                { httpOnly: false, maxAge: 60 * 60 * 24 }
+            );
+            return response;
+        }
+        return NextResponse.next();
+    }
 }
 
 export const config = {
-    matcher: ["/admin/:path*", "/booking/:path*"]
+    matcher: ["/admin/:path*", "/booking/:path*", "/user-profile/:path*"]
 };

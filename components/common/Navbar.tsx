@@ -8,7 +8,7 @@ import { Button } from "../ui/button";
 import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ModeToggle } from "../Destinations/mode-toggle";
-import { User } from "@prisma/client";
+import type { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
 const navItems = [
@@ -53,10 +53,13 @@ const Navbar = () => {
         ...navItems,
         ...(userRole === "ADMIN"
             ? [{ key: "6", label: "Dashboard", href: "/admin" }]
-            : [{ key: "7", label: "Profile", href: "/user-profile" }])
+            : []),
+        ...(userRole === "USER"
+            ? [{ key: "7", label: "Profile", href: "/user-profile" }]
+            : [])
     ];
     return (
-        <div className="bg-background border-border sticky top-0 z-50 w-full border-b">
+        <div className="border-border bg-background sticky top-0 z-50 w-full border-b">
             <div className="container mx-auto flex h-20 w-full items-center justify-between px-4 md:px-6">
                 <Link href="/" className="flex items-center gap-2">
                     <Image
@@ -64,7 +67,7 @@ const Navbar = () => {
                         alt="AeroCanaan Logo"
                         width={60}
                         height={80}
-                        className="mix-blend-darken"
+                        className="object-contain"
                     />
                     <p className="text-foreground mt-4 -ml-6 text-sm font-bold">
                         AeroCanaan
@@ -77,8 +80,8 @@ const Navbar = () => {
                             href={item.href}
                             className={`transition-colors hover:text-amber-600 ${
                                 pathName === item.href
-                                    ? "border-b-2 border-[#FA7436] font-bold text-[#FA7436]"
-                                    : "text-[#222222]"
+                                    ? "border-b-2 border-[#FA7436] font-bold text-[#FA7436] dark:text-[#FA7436]"
+                                    : "text-foreground"
                             }`}
                         >
                             {item.label}
@@ -90,12 +93,12 @@ const Navbar = () => {
                     <div className="hidden items-center space-x-4 text-sm lg:flex">
                         {user ? (
                             <>
-                                <span className="font-bold text-[#222222]">
+                                <span className="text-foreground font-bold">
                                     Welcome, {user.firstName}
                                 </span>
                                 <button
                                     onClick={handleLogout}
-                                    className="bg-primary rounded-xl px-4 py-2 text-sm text-white hover:bg-gray-300"
+                                    className="bg-primary rounded-xl px-4 py-2 text-sm text-white hover:bg-gray-300 dark:hover:bg-gray-600"
                                 >
                                     Logout
                                 </button>
@@ -145,7 +148,7 @@ const Navbar = () => {
                                 <div className="mt-8 flex flex-col gap-4">
                                     {user ? (
                                         <>
-                                            <span className="text-center text-[#222222]">
+                                            <span className="text-foreground text-center">
                                                 Welcome, {user.firstName}
                                             </span>
                                             <button
@@ -153,7 +156,7 @@ const Navbar = () => {
                                                     handleLogout();
                                                     setIsOpen(false);
                                                 }}
-                                                className="text-foreground rounded-lg bg-gray-100 py-3 text-center transition-colors duration-200 hover:bg-gray-200"
+                                                className="text-foreground rounded-lg bg-gray-100 py-3 text-center transition-colors duration-200 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
                                             >
                                                 Logout
                                             </button>
@@ -162,7 +165,7 @@ const Navbar = () => {
                                         <>
                                             <Link
                                                 href="/login"
-                                                className="text-foreground w-full rounded-lg py-3 text-center transition-colors duration-200 hover:bg-gray-100"
+                                                className="text-foreground w-full rounded-lg py-3 text-center transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-800"
                                                 onClick={() => setIsOpen(false)}
                                             >
                                                 Log In
