@@ -1,11 +1,68 @@
-import { destination } from "@/data/data"
+"use client"
+import { useEffect, useState } from "react"
 import { ArrowRight, Star } from "lucide-react"
 import { Card, CardContent } from "../ui/card"
 import Image from "next/image"
 import { Button } from "../ui/button"
 import Link from "next/link"
+import { Trip } from "@/types/Interface"
+
+interface Place {
+  id: string
+  name: string
+  location: string
+  shortDesc: string
+  images: {
+    url: string
+  }[]
+  trips: Trip[]
+  availableTrips?: number
+}
 
 const PopularDestinations = () => {
+  const [destinations, setDestinations] = useState<Place[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchDestinations = async () => {
+      try {
+        const response = await fetch('/api/places')
+        if (!response.ok) {
+          throw new Error('Failed to fetch destinations')
+        }
+        const data = await response.json()
+        // Get first 3 destinations
+        setDestinations(data.slice(0, 3))
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchDestinations()
+  }, [])
+
+  if (loading) {
+    return (
+      <section className="py-10">
+        <div className="container mx-auto px-4 text-center">
+          <p>Loading destinations...</p>
+        </div>
+      </section>
+    )
+  }
+  if (error) {
+    return (
+      <section className="py-10">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-red-500">{error}</p>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section className="py-10">
       <div className="container mx-auto px-4">
@@ -20,19 +77,18 @@ const PopularDestinations = () => {
             Discover the most beloved places in the Holy Land, from ancient historical sites to natural wonders
           </p>
         </div>
-        {/* Cards */}
         <div className="flex flex-wrap justify-center gap-8">
-          {destination.map((des) => (
+          {destinations.map((place) => (
             <Card
-              key={des.id}
+              key={place.id}
               className="group relative w-92 overflow-hidden rounded-xl bg-card p-0 shadow-lg transition-all duration-300 hover:shadow-xl"
             >
               <CardContent className="p-0">
                 <div className="relative h-40 w-full overflow-hidden">
                   <Image
-                    src={des.image || "/placeholder.svg"}
+                    src={place.images[0]?.url || "/placeholder.svg"}
                     fill
-                    alt={des.name}
+                    alt={place.name}
                     className="object-cover transition-all duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/40" />
@@ -40,33 +96,30 @@ const PopularDestinations = () => {
                 <div className="p-4">
                   <div className="flex items-start justify-between">
                     <div>
-                      <h3 className="text-lg font-bold text-foreground">{des.name}</h3>
+                      <h3 className="text-lg font-bold text-foreground">{place.name}</h3>
+                      <p className="text-sm text-muted-foreground">{place.location}</p>
                     </div>
                     <div className="mt-1 flex items-center">
-                      <Star fill="orange" size={16} className="text-orange-400" />
-                      <span className="ml-1 text-xs font-medium text-muted-foreground">{des.rating}</span>
-                    </div>
-                  </div>{" "}
-                  <div className="mt-4 flex flex-wrap gap-1">
-                    {des.activities.slice(0, 4).map((activity, index) => (
-                      <span
-                        key={index}
-                        className="rounded-full bg-amber-50 dark:bg-amber-900/20 px-3 py-2 text-[10px] font-medium text-amber-600 dark:text-amber-400"
-                      >
-                        {activity}
+                      <span className="text-xs font-medium text-muted-foreground">
+                        {place.availableTrips || 0} trips available
                       </span>
-                    ))}
+                    </div>
                   </div>
-                  <button className="mt-6 w-full rounded-lg bg-[#FA7436] py-2 font-medium text-white transition-colors hover:bg-[#e05b2a]">
-                    Explore Now
-                  </button>
+                  <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
+                    {place.shortDesc}
+                  </p>
+                  <Link href={`/explore`} className="mt-6 block">
+                    <Button className="w-full rounded-lg bg-[#FA7436] py-2 font-medium text-white transition-colors hover:bg-[#e05b2a]">
+                      Explore Now
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
         <div className="mt-10 text-center">
-          <Link href={"/explore"}>
+          <Link href="/explore">
             <Button
               variant="outline"
               className="group border-[#FA7436] px-8 py-6 text-foreground hover:bg-amber-50 dark:hover:bg-amber-900/20"

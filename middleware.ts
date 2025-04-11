@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 export function middleware(req: NextRequest) {
     const token = req.cookies.get("auth-token")?.value;
     const userRole = req.cookies.get("userRole")?.value;
-
     if (req.nextUrl.pathname.startsWith("/admin")) {
         if (!token) {
             const response = NextResponse.redirect(new URL("/login", req.url));
@@ -14,7 +13,7 @@ export function middleware(req: NextRequest) {
             );
             return response;
         }
-        if (userRole !== "admin") {
+        if (userRole?.toUpperCase() !== "ADMIN") {
             const response = NextResponse.redirect(new URL("/", req.url));
             response.cookies.set(
                 "error",
@@ -25,7 +24,6 @@ export function middleware(req: NextRequest) {
         }
         return NextResponse.next();
     }
-
     if (req.nextUrl.pathname.startsWith("/booking")) {
         if (!token) {
             const response = NextResponse.redirect(new URL("/login", req.url));

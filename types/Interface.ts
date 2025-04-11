@@ -1,6 +1,6 @@
 export interface Trip {
-    id: string;//UUID
-    title: string; // Ensure all consumers use 'title' instead of 'name'
+    id: string;
+    title: string; 
     image: string;
     rating: number;
     location: string;
@@ -13,8 +13,10 @@ export interface Trip {
     hasDiscount: boolean;
     isSpecialOffer: boolean;
     seats: number;
-    startDate: Date;
-    endDate: Date;
+    bookedSeats: number;
+    start_date: Date;
+    end_date: Date;
+    images: string[];
 }
 
 export interface RouteCardProps {
@@ -67,9 +69,32 @@ export type Place = {
 
 export type User = {
     id: string;
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     password: string;
     role: string;
     profilePicture?: string;
 };
+
+export interface Destination {
+    images: string[];
+    name: string;
+    category: string;
+    shortDescription: string;
+    location: string;
+    availableTrips: number;
+    historicalSignificance: string;
+    culturalImportance: string;
+    bestTimeToVisit: string;
+    localTips: string;
+    accessibilityInfo: string;
+    fullDescription: string;
+    trips: Trip[];
+    id: number;
+    longDescription?: string;
+    activities?: string[];
+    reviews?: number;  
+    rating?: number;
+    price?: number;
+  }

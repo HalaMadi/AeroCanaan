@@ -2,6 +2,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Poppins } from "next/font/google";
 import "../globals.css";
 import { cn } from "@/lib/utils";
+import { ToastContainer } from "react-toastify";
 
 
 const poppins = Poppins({
@@ -28,6 +29,7 @@ export default function RootLayout({
                 <ThemeProvider defaultTheme="system" enableSystem>
                     {children}
                 </ThemeProvider>
+                <ToastContainer />
             </body>
         </html>
     );

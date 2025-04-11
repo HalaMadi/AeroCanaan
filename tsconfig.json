@@ -19,8 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
-    }
+          "@/*": ["./*"],
+          "@/components/*": ["./components/*"]
+        },
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/upload/route.ts"],
   "exclude": ["node_modules"]

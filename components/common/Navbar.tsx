@@ -13,10 +13,9 @@ import { useRouter } from "next/navigation";
 
 const navItems = [
     { key: "1", label: "Home", href: "/" },
-    { key: "2", label: "Activities", href: "/trips" },
-    { key: "3", label: "Destinations", href: "/explore" },
-    { key: "4", label: "Contact Us", href: "/contact" },
-    { key: "5", label: "Discover", href: "/discover" }
+    { key: "3", label: "Activities", href: "/explore" },
+    { key: "4", label: "Discover", href: "/discover" },
+    { key: "5", label: "Contact Us", href: "/contact" }
 ];
 
 const Navbar = () => {
@@ -30,7 +29,6 @@ const Navbar = () => {
         if (typeof window !== "undefined") {
             const role = localStorage.getItem("userRole");
             setUserRole(role);
-
             const token = localStorage.getItem("auth-token");
             if (token) {
                 try {
@@ -54,19 +52,20 @@ const Navbar = () => {
 
     const extendedNavItems = [
         ...navItems,
-        ...(userRole === "admin"
-            ? [{ key: "6", label: "Dashboard", href: "/admin/admin-panel" }]
+        ...(userRole === "ADMIN"
+            ? [{ key: "6", label: "Dashboard", href: "/admin" }]
             : [])
     ];
     return (
         <div className="bg-background border-border sticky top-0 z-50 w-full border-b">
-            <div className="container mx-auto flex h-16 w-full items-center justify-between px-4 md:px-6">
+            <div className="container mx-auto flex h-20 w-full items-center justify-between px-4 md:px-6">
                 <Link href="/" className="flex items-center gap-2">
                     <Image
                         src="/logo.png"
                         alt="AeroCanaan Logo"
                         width={60}
                         height={80}
+                        className="mix-blend-darken"
                     />
                     <p className="text-foreground mt-4 -ml-6 text-sm font-bold">
                         AeroCanaan

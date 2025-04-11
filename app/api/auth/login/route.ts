@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
             );
         }
         const token = jwt.sign(
-            { userId: user.id, email, firstName: user.firstName },
+            { userId: user.id, email, firstName: user.firstName, lastName: user.lastName, mobilePhone: user.mobile },
             jwtSecret,
             {
                 expiresIn: "1d"
@@ -50,6 +50,11 @@ export async function POST(req: NextRequest) {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             maxAge: 60 * 60 * 24 // 1 day
+        });
+        (await cookies()).set("userRole", user.role, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            maxAge: 60 * 60 * 24
         });
         return NextResponse.json(
             {
