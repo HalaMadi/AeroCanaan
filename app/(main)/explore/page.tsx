@@ -1,30 +1,50 @@
-"use client"
-import Image from "next/image"
-import { Star, MapPin, ChevronLeft, ChevronRight } from "lucide-react"
-import type { Trip } from "@/types/Interface"
-import { useEffect, useState } from "react"
-import axios from "axios"
-import TripDialog from "@/components/TripDialog/TripDialog"
+"use client";
+import Image from "next/image";
+import { Star, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
+import { Trip } from "@/types/Interface";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useBooking } from "@/provider/BookingContext";
+import { Button } from "@/components/ui/button";
+import { isAuthenticated } from "@/lib/auth";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export default function ExplorePlaces() {
-  const [trips, setTrips] = useState<Trip[]>([])
-  const getData = async () => {
-    try {
-      const res = await axios.get("http://localhost:3000/api/trips")
-      setTrips(res.data)
-      console.log(res.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  useEffect(() => {
-    getData()
-  }, [])
-  const featuredTrips = trips.filter((trip) => trip.isFeatured)
-  const specialOffers = trips.filter((trip) => trip.isSpecialOffer)
-  const vacationPlans = trips.filter((trip) => trip.hasDiscount)
-  return (
-    <main className="min-h-screen bg-background">
+      const { openBooking } = useBooking();
+    const [trips, setTrips] = useState<Trip[]>([]);
+    const router = useRouter();
+    const getData = async () => {
+        try {
+            const res = await axios.get("http://localhost:3000/api/trips");
+            setTrips(res.data);
+            console.log(res.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    useEffect(() => {
+        getData();
+    }, []);
+    const handleBookingClick = (trip: Trip) => {
+        if (!isAuthenticated()) {
+            toast.info("Please log in to book this trip", {
+                position: "top-center",
+                autoClose: 3000,
+            });
+            setTimeout(() => {
+                router.push("/login");
+                
+            }, 3000);
+            return;
+        }
+        openBooking(trip);
+    };
+    const featuredTrips = trips.filter((trip) => trip.isFeatured);
+    const specialOffers = trips.filter((trip) => trip.isSpecialOffer);
+    const vacationPlans = trips.filter((trip) => trip.hasDiscount);
+    return (
+      <main className="min-h-screen bg-background">
       <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
         <div className="mb-8 text-center">
           <h2 className="mb-2 text-3xl font-bold text-foreground">
@@ -75,8 +95,12 @@ export default function ExplorePlaces() {
                     )}
                     <span className="font-bold text-orange-500">${trip.discountPrice.toFixed(2)}</span>
                   </div>
-                  <TripDialog trip={trip} />
-                </div>
+                  <Button
+                                        onClick={() => handleBookingClick(trip)}
+                                        className="cursor-pointer rounded-lg bg-orange-500 px-4 py-2 text-white hover:bg-orange-600"
+                                    >
+                                        Book Now
+                                    </Button>{" "}                </div>
                 {trip.duration && (
                   <div className="mt-2 text-xs text-muted-foreground">
                     {trip.duration} day
@@ -171,7 +195,12 @@ export default function ExplorePlaces() {
                     </div>
                     <span className="ml-1 text-sm text-muted-foreground">({plan.rating.toFixed(1)})</span>
                   </div>
-                  <TripDialog trip={plan} />
+                  <Button
+                                        onClick={() => handleBookingClick(plan)}
+                                        className="cursor-pointer rounded-lg bg-orange-500 px-4 py-2 text-white hover:bg-orange-600"
+                                    >
+                                        Book Now
+                                    </Button>
                 </div>
               </div>
             </div>
@@ -242,7 +271,12 @@ export default function ExplorePlaces() {
                     <span className="mr-1 text-xs text-muted-foreground">From</span>
                     <span className="text-lg font-bold text-orange-500">€{offer.discountPrice.toFixed(2)}</span>
                   </div>
-                  <TripDialog trip={offer} />
+                  <Button
+                                        onClick={() => handleBookingClick(offer)}
+                                        className="cursor-pointer rounded-lg bg-orange-500 px-4 py-2 text-white hover:bg-orange-600"
+                                    >
+                                        Book Now
+                                    </Button>
                 </div>
               </div>
             </div>

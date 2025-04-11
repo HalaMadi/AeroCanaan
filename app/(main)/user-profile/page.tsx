@@ -37,19 +37,15 @@ const UserProfile = () => {
           <ul className="space-y-4 text-foreground">
             <li className="font-semibold text-[#E17100] cursor-pointer hover:text-[#E17100]">Profile</li>
             <li className="cursor-pointer hover:text-[#E17100]">Trips</li>
-            <li className="cursor-pointer hover:text-[#E17100]">Settings</li>
-            <li className="cursor-pointer hover:text-[#E17100]">Logout</li>
           </ul>
         </nav>
       </aside>
-
       <main className="flex-1 p-10 flex items-center justify-center bg-gradient-to-br from-muted to-background">
         <div className="w-full max-w-md overflow-hidden rounded-2xl shadow-[0_20px_50px_rgba(225,113,0,0.15)]">
           <div className="h-2 w-full bg-gradient-to-r from-[#E17100] to-orange-400"></div>
           <div className="relative space-y-6 bg-card p-8 text-sm transition-all duration-300 ease-in-out">
             <div className="absolute top-0 left-0 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-[#E17100]/20 to-orange-500/5"></div>
             <div className="absolute right-0 bottom-0 h-28 w-28 translate-x-1/2 translate-y-1/2 rounded-full bg-gradient-to-tl from-[#E17100]/20 to-orange-500/5"></div>
-
             <div className="relative mx-auto h-24 w-24 mb-2">
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#E17100] to-orange-400 p-[2px]">
                 <div className="h-full w-full rounded-full bg-card flex items-center justify-center overflow-hidden"></div>
@@ -58,12 +54,10 @@ const UserProfile = () => {
                 <Camera size={14} />
               </button>
             </div>
-
             <div className="relative">
               <h1 className="mb-1.5 text-center text-2xl font-bold text-foreground">User Profile</h1>
               <p className="mb-6 text-center text-sm text-muted-foreground">Update your personal information</p>
             </div>
-
             <form onSubmit={handleSave} className="space-y-5">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -88,7 +82,6 @@ const UserProfile = () => {
                     />
                   </div>
                 </div>
-
                 <div className="space-y-2">
                   <label htmlFor="lastName" className="text-foreground text-xs font-medium uppercase tracking-wide">
                     Last Name
@@ -112,7 +105,6 @@ const UserProfile = () => {
                   </div>
                 </div>
               </div>
-
               <div className="space-y-2">
                 <label htmlFor="email" className="text-foreground text-xs font-medium uppercase tracking-wide">
                   Email
@@ -135,7 +127,6 @@ const UserProfile = () => {
                   />
                 </div>
               </div>
-
               <div className="space-y-2">
                 <label htmlFor="phoneNumber" className="text-foreground text-xs font-medium uppercase tracking-wide">
                   Phone Number
@@ -158,7 +149,6 @@ const UserProfile = () => {
                   />
                 </div>
               </div>
-
               <div className="flex gap-4 pt-4">
                 <button
                   type="submit"

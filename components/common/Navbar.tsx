@@ -41,7 +41,6 @@ const Navbar = () => {
       }
     }
   }, [])
-
   const handleLogout = () => {
     if (typeof window !== "undefined") {
       localStorage.removeItem("auth-token")
@@ -52,7 +51,7 @@ const Navbar = () => {
 
   const extendedNavItems = [
     ...navItems,
-    ...(userRole === "ADMIN" ? [{ key: "6", label: "Dashboard", href: "/admin" }] : []),
+    ...(userRole === "ADMIN" ? [{ key: "6", label: "Dashboard", href: "/admin" }] : [{ key: "7", label: "Profile", href: "/user-profile" }]),
   ]
   return (
     <div className="sticky top-0 z-50 w-full border-b border-border bg-background">
