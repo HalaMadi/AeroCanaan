@@ -8,10 +8,8 @@ import {
     SidebarHeader,
     SidebarMenu,
     SidebarMenuItem,
-    SidebarMenuButton,
-    SidebarTrigger
+    SidebarMenuButton
 } from "@/components/ui/sidebar";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
@@ -51,12 +49,8 @@ export default function AdminSidebar() {
                             Aero<span className="text-[#FA7436]">Canaan</span>
                         </div>
                     </Link>
-                    <div className="ml-auto flex items-center gap-2">
-                        <SidebarTrigger />
-                    </div>
                 </div>
             </SidebarHeader>
-
             <SidebarContent>
                 <SidebarMenu>
                     <SidebarMenuItem>
@@ -70,7 +64,6 @@ export default function AdminSidebar() {
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
-
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             asChild
@@ -82,7 +75,6 @@ export default function AdminSidebar() {
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
-
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             asChild
@@ -94,7 +86,6 @@ export default function AdminSidebar() {
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
-
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             asChild
@@ -106,7 +97,6 @@ export default function AdminSidebar() {
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
-
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             asChild
@@ -118,7 +108,6 @@ export default function AdminSidebar() {
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
-
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             asChild
@@ -132,7 +121,6 @@ export default function AdminSidebar() {
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarContent>
-
             <SidebarFooter className="border-t border-gray-200 dark:border-gray-800">
                 <div className="flex items-center justify-between p-4">
                     <div className="flex items-center gap-3">
@@ -142,7 +130,6 @@ export default function AdminSidebar() {
                                     variant="ghost"
                                     className="flex h-auto items-center gap-2 p-0 hover:bg-transparent"
                                 >
-                                 
                                     <div className="flex flex-col items-start text-sm">
                                         <span className="font-medium">
                                             Admin User

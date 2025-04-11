@@ -12,6 +12,7 @@ import AdminCard from "@/components/admin/adminCard";
 import { Search } from "lucide-react";
 import useDashboardData from "@/hooks/useDashboardData"; 
 import Image from "next/image";
+import UserChart from "@/components/charts/UserChart";
 
 const AdminDashboard = () => {
   const [period, setPeriod] = useState("week");
@@ -59,20 +60,8 @@ const AdminDashboard = () => {
         />
       </div>
       <div className="mb-6 grid gap-6 md:grid-cols-2">
-        <Card>
-          <CardHeader className="flex items-center justify-between">
-            <div>
-              <CardTitle>Revenue Overview</CardTitle>
-              <CardDescription>Monthly revenue breakdown</CardDescription>
-            </div>
-            <Tabs defaultValue="week" className="w-[200px]" onValueChange={setPeriod}>
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="week">Week</TabsTrigger>
-                <TabsTrigger value="month">Month</TabsTrigger>
-                <TabsTrigger value="year">Year</TabsTrigger>
-              </TabsList>
-            </Tabs>
-          </CardHeader>
+        <Card className="w-full md:w-2/3">
+              <UserChart />
         </Card>
       </div>
       <Card>
@@ -108,12 +97,12 @@ const AdminDashboard = () => {
                     <Badge
                       variant="outline"
                       className={
-                        trip.bookedSeats / trip.seats > 0.8
+                        trip.seats > 0 && trip.bookedSeats / trip.seats > 0.8
                           ? "bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400"
                           : "bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400"
                       }
                     >
-                      {trip.bookedSeats} / {trip.seats} Booked
+                      {trip.seats > 0 ? `${trip.bookedSeats} / ${trip.seats} Booked` : "Seats data unavailable"}
                     </Badge>
                   </div>
                   <Progress value={trip.bookedSeatsPercentage} />
