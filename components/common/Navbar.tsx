@@ -53,7 +53,10 @@ const Navbar = () => {
         ...navItems,
         ...(userRole === "ADMIN"
             ? [{ key: "6", label: "Dashboard", href: "/admin" }]
-            : [{ key: "7", label: "Profile", href: "/user-profile" }])
+            : []),
+        ...(userRole === "USER"
+            ? [{ key: "7", label: "Profile", href: "/user-profile" }]
+            : [])
     ];
     return (
         <div className="border-border bg-background sticky top-0 z-50 w-full border-b">
