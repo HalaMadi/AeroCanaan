@@ -128,6 +128,6 @@ html {
 }
 @media (width >= 40rem) {
   .sm\:max-w-lg {
-      max-width: var(--container-4xl);
+      max-width: var(--container-3xl);
   }
 }

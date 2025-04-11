@@ -4,10 +4,16 @@ import { Star, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 import { Trip } from "@/types/Interface";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import TripDialog from "@/components/TripDialog/TripDialog";
+import { useBooking } from "@/provider/BookingContext";
+import { Button } from "@/components/ui/button";
+import { isAuthenticated } from "@/lib/auth";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export default function ExplorePlaces() {
+    const { openBooking } = useBooking();
     const [trips, setTrips] = useState<Trip[]>([]);
+    const router = useRouter();
     const getData = async () => {
         try {
             const res = await axios.get("http://localhost:3000/api/trips");
@@ -20,6 +26,20 @@ export default function ExplorePlaces() {
     useEffect(() => {
         getData();
     }, []);
+    const handleBookingClick = (trip: Trip) => {
+        if (!isAuthenticated()) {
+            toast.info("Please log in to book this trip", {
+                position: "top-center",
+                autoClose: 3000,
+            });
+            setTimeout(() => {
+                router.push("/login");
+                
+            }, 3000);
+            return;
+        }
+        openBooking(trip);
+    };
     const featuredTrips = trips.filter((trip) => trip.isFeatured);
     const specialOffers = trips.filter((trip) => trip.isSpecialOffer);
     const vacationPlans = trips.filter((trip) => trip.hasDiscount);
@@ -44,7 +64,6 @@ export default function ExplorePlaces() {
                             key={trip.id}
                             className="group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-lg"
                         >
-
                             <div className="relative h-48">
                                 <Image
                                     src={trip.image || "/placeholder.svg"}
@@ -88,7 +107,12 @@ export default function ExplorePlaces() {
                                             ${trip.discountPrice.toFixed(2)}
                                         </span>
                                     </div>
-                                    <TripDialog trip={trip} />
+                                    <Button
+                                        onClick={() => handleBookingClick(trip)}
+                                        className="cursor-pointer rounded-lg bg-orange-500 px-4 py-2 text-white hover:bg-orange-600"
+                                    >
+                                        Book Now
+                                    </Button>{" "}
                                 </div>
                                 {trip.duration && (
                                     <div className="mt-2 text-xs text-gray-500">
@@ -197,7 +221,12 @@ export default function ExplorePlaces() {
                                             ({plan.rating.toFixed(1)})
                                         </span>
                                     </div>
-                                    <TripDialog trip={plan} />
+                                    <Button
+                                        onClick={() => handleBookingClick(plan)}
+                                        className="cursor-pointer rounded-lg bg-orange-500 px-4 py-2 text-white hover:bg-orange-600"
+                                    >
+                                        Book Now
+                                    </Button>
                                 </div>
                             </div>
                         </div>
@@ -283,7 +312,12 @@ export default function ExplorePlaces() {
                                             €{offer.discountPrice.toFixed(2)}
                                         </span>
                                     </div>
-                                    <TripDialog trip={offer} />
+                                    <Button
+                                        onClick={() => handleBookingClick(offer)}
+                                        className="cursor-pointer rounded-lg bg-orange-500 px-4 py-2 text-white hover:bg-orange-600"
+                                    >
+                                        Book Now
+                                    </Button>
                                 </div>
                             </div>
                         </div>

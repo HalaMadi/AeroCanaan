@@ -9,7 +9,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const categories = ["historical", "religious", "natural", "cultural"];
+const categories = ["Historical", "Religious", "Natural", "Cultural"];
 const Discover = () => {
     const [destinations, setDestinations] = useState<Place[]>([]);
 
@@ -53,18 +53,15 @@ const Discover = () => {
                         <TabsTrigger value="all" className="text-sm">
                             All Destinations
                         </TabsTrigger>
-                        <TabsTrigger value="historical" className="text-sm">
-                            Historical
-                        </TabsTrigger>
-                        <TabsTrigger value="religious" className="text-sm">
-                            Religious
-                        </TabsTrigger>
-                        <TabsTrigger value="natural" className="text-sm">
-                            Natural
-                        </TabsTrigger>
-                        <TabsTrigger value="cultural" className="text-sm">
-                            Cultural
-                        </TabsTrigger>
+                        {categories.map((category) => (
+                            <TabsTrigger
+                                key={category.toLowerCase()}
+                                value={category.toLowerCase()}
+                                className="text-sm"
+                            >
+                                {category}
+                            </TabsTrigger>
+                        ))}
                     </TabsList>
                 </div>
                 <TabsContent value="all" className="space-y-8">
@@ -79,13 +76,17 @@ const Discover = () => {
                 </TabsContent>
                 {categories.map((category) => (
                     <TabsContent
-                        key={category}
-                        value={category}
+                        key={category.toLowerCase()}
+                        value={category.toLowerCase()}
                         className="space-y-8"
                     >
                         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                             {destinations
-                                .filter((dest) => dest.category === category)
+                                .filter(
+                                    (dest) =>
+                                        dest.category.toLowerCase() ===
+                                        category.toLowerCase()
+                                )
                                 .map((destination) => (
                                     <DiscoverCard
                                         key={destination.id}
