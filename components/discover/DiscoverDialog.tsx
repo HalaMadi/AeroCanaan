@@ -210,7 +210,7 @@ export default function DestinationDialog({ children, destination }: Props) {
                                                     <div className="flex items-start justify-between">
                                                         <div>
                                                             <h4 className="font-medium text-gray-900">
-                                                                {trip.name}
+                                                                {trip.title}
                                                             </h4>
                                                             <p className="mt-1 text-sm text-gray-600">
                                                                 {
@@ -238,9 +238,9 @@ export default function DestinationDialog({ children, destination }: Props) {
                                                                 size={14}
                                                                 className="mr-1"
                                                             />
-                                                            {trip.startDate
+                                                            {trip.start_date
                                                                 ? new Date(
-                                                                      trip.startDate
+                                                                      trip.start_date
                                                                   ).toLocaleDateString(
                                                                       "en-US",
                                                                       {

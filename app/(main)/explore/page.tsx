@@ -42,44 +42,60 @@ export default function ExplorePlaces() {
                     {featuredTrips.map((trip) => (
                         <div
                             key={trip.id}
-                            className="overflow-hidden rounded-lg bg-white shadow-md"
+                            className="group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-lg"
                         >
+
                             <div className="relative h-48">
                                 <Image
                                     src={trip.image || "/placeholder.svg"}
-                                    alt={trip.title}
+                                    alt={`${trip.title} in ${trip.location}`}
                                     fill
-                                    className="object-fit"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                                 />
+                                {trip.isFeatured && (
+                                    <div className="absolute top-3 left-3 rounded-full bg-orange-500 px-3 py-1 text-xs font-bold text-white">
+                                        Featured
+                                    </div>
+                                )}
                             </div>
                             <div className="p-4">
                                 <div className="mb-2 flex items-center justify-between">
-                                    <h3 className="text-lg font-semibold">
+                                    <h3 className="line-clamp-1 text-lg font-semibold text-gray-900">
                                         {trip.title}
                                     </h3>
                                     <div className="flex items-center">
                                         <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                                         <span className="ml-1 text-sm">
-                                            {trip.rating}
+                                            {trip.rating.toFixed(1)}
                                         </span>
                                     </div>
-                                    
                                 </div>
                                 <div className="mb-3 flex items-center text-sm text-gray-500">
                                     <MapPin className="mr-1 h-3.5 w-3.5" />
-                                    <span>{trip.location}</span>
+                                    <span className="line-clamp-1">
+                                        {trip.location}
+                                    </span>
                                 </div>
-                                <div className="flex items-center justify-between">
+                                <div className="flex items-center justify-between gap-6">
                                     <div className="flex items-center gap-2">
-                                        <span className="text-gray-400 line-through">
-                                            ${trip.originalPrice}
-                                        </span>
+                                        {trip.hasDiscount && (
+                                            <span className="text-sm text-gray-400 line-through">
+                                                ${trip.originalPrice.toFixed(2)}
+                                            </span>
+                                        )}
                                         <span className="font-bold text-orange-500">
-                                            ${trip.discountPrice}
+                                            ${trip.discountPrice.toFixed(2)}
                                         </span>
                                     </div>
-                                </div>   
-                                <TripDialog trip={trip} />                         
+                                    <TripDialog trip={trip} />
+                                </div>
+                                {trip.duration && (
+                                    <div className="mt-2 text-xs text-gray-500">
+                                        {trip.duration} day
+                                        {trip.duration !== 1 ? "s" : ""}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     ))}
@@ -105,7 +121,6 @@ export default function ExplorePlaces() {
                     </button>
                 </div>
             </section>
-            {/* Vacation Plans Section */}
             <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
                 <div className="mb-8 flex items-end justify-between">
                     <div>
@@ -133,39 +148,57 @@ export default function ExplorePlaces() {
                     {vacationPlans.map((plan) => (
                         <div
                             key={plan.id}
-                            className="overflow-hidden rounded-lg bg-white shadow-md"
+                            className="group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-lg"
                         >
                             <div className="relative h-56">
                                 <Image
                                     src={plan.image || "/placeholder.svg"}
-                                    alt={plan.title}
+                                    alt={`${plan.title} in ${plan.location}`}
                                     fill
-                                    className="object-cover"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
+                                <div className="absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold backdrop-blur-sm">
+                                    {plan.duration} Day
+                                    {plan.duration !== 1 ? "s" : ""} Trip
+                                </div>
                             </div>
-                            <div className="bg-gray-50 p-4">
-                                <div className="mb-2 flex items-center justify-between">
-                                    <h3 className="font-semibold">
-                                        {plan.title}
-                                    </h3>
-                                    <span className="font-bold text-orange-500">
-                                        ${plan.price}
+                            <div className="bg-gray-50 p-5">
+                                <div className="mb-3 flex items-start justify-between">
+                                    <div>
+                                        <h3 className="line-clamp-1 text-lg font-semibold text-gray-900">
+                                            {plan.title}
+                                        </h3>
+                                        <div className="flex items-center text-sm text-gray-500">
+                                            <MapPin className="mr-1 h-3.5 w-3.5" />
+                                            <span>{plan.location}</span>
+                                        </div>
+                                    </div>
+                                    <span className="text-lg font-bold text-orange-500">
+                                        ${Number(plan.price).toFixed(2)}
                                     </span>
                                 </div>
-                                <div className="mb-3 flex items-center justify-between">
-                                    <div className="flex items-center text-sm text-gray-500">
-                                        <span className="mr-2">
-                                            {plan.duration} Days Trip
-                                        </span>
-                                    </div>
+                                <div className="flex items-center justify-between gap-10">
                                     <div className="flex items-center">
-                                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                                        <span className="ml-1 text-sm">
-                                            {plan.rating}
+                                        <div className="flex">
+                                            {[1, 2, 3, 4, 5].map((star) => (
+                                                <Star
+                                                    key={star}
+                                                    className={`h-4 w-4 ${
+                                                        star <=
+                                                        Math.floor(plan.rating)
+                                                            ? "fill-yellow-400 text-yellow-400"
+                                                            : "text-gray-300"
+                                                    }`}
+                                                />
+                                            ))}
+                                        </div>
+                                        <span className="ml-1 text-sm text-gray-500">
+                                            ({plan.rating.toFixed(1)})
                                         </span>
                                     </div>
+                                    <TripDialog trip={plan} />
                                 </div>
-                              
                             </div>
                         </div>
                     ))}
@@ -196,40 +229,61 @@ export default function ExplorePlaces() {
                     {specialOffers.map((offer) => (
                         <div
                             key={offer.id}
-                            className="overflow-hidden rounded-lg bg-white shadow-md"
+                            className="group overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-lg"
                         >
                             <div className="relative h-56">
                                 <Image
                                     src={offer.image || "/placeholder.svg"}
-                                    alt={offer.title}
+                                    alt={`${offer.title} in ${offer.location}`}
                                     fill
-                                    className="object-cover"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
+                                <div className="absolute top-3 left-3 rounded-full bg-orange-500 px-3 py-1 text-xs font-bold text-white">
+                                    Special Offer
+                                </div>
                             </div>
                             <div className="bg-gray-50 p-5">
-                                <h3 className="mb-2 text-lg font-semibold">
-                                    {offer.title}
-                                </h3>
-                                <div className="mb-3 flex">
-                                    {[1, 2, 3, 4, 5].map((star) => (
-                                        <Star
-                                            key={star}
-                                            className="h-4 w-4 fill-yellow-400 text-yellow-400"
-                                        />
-                                    ))}
+                                <div className="mb-3">
+                                    <h3 className="line-clamp-1 text-lg font-semibold text-gray-900">
+                                        {offer.title}
+                                    </h3>
+                                    <div className="flex items-center text-sm text-gray-500">
+                                        <MapPin className="mr-1 h-3.5 w-3.5" />
+                                        <span>{offer.location}</span>
+                                    </div>
                                 </div>
-                                <p className="mb-4 text-sm text-gray-600">
+                                <div className="mb-3 flex items-center">
+                                    <div className="flex">
+                                        {[1, 2, 3, 4, 5].map((star) => (
+                                            <Star
+                                                key={star}
+                                                className={`h-4 w-4 ${
+                                                    star <=
+                                                    Math.floor(offer.rating)
+                                                        ? "fill-yellow-400 text-yellow-400"
+                                                        : "text-gray-300"
+                                                }`}
+                                            />
+                                        ))}
+                                    </div>
+                                    <span className="ml-1 text-sm text-gray-500">
+                                        ({offer.rating.toFixed(1)})
+                                    </span>
+                                </div>
+                                <p className="mb-4 line-clamp-2 text-sm text-gray-600">
                                     {offer.description}
                                 </p>
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center">
-                                        <span className="mr-1 text-sm text-gray-500">
+                                <div className="flex items-center justify-between gap-10">
+                                    <div>
+                                        <span className="mr-1 text-xs text-gray-500">
                                             From
                                         </span>
-                                        <span className="text-xl font-bold text-orange-500">
-                                            €{offer.discountPrice}
+                                        <span className="text-lg font-bold text-orange-500">
+                                            €{offer.discountPrice.toFixed(2)}
                                         </span>
                                     </div>
+                                    <TripDialog trip={offer} />
                                 </div>
                             </div>
                         </div>

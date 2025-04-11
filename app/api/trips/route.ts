@@ -4,8 +4,22 @@ import { NextRequest, NextResponse } from "next/server";
 // Fetch all trips from the database
 export async function GET() {
     try {
-        const trips = await prisma.trip.findMany();
-        return NextResponse.json(trips);
+        const trips = await prisma.trip.findMany({
+            include: {
+                bookings: {
+                    where: {
+                        status: "CONFIRMED"
+                    }
+                }
+            }
+        });
+        const formattedTrips = trips.map((trip) => ({
+            ...trip,
+            bookedSeats: trip.bookings.length,
+            availableSeats: trip.seats - trip.bookings.length,
+            status: trip.bookings.length > 0 ? "active" : "inactive"
+        }));
+        return NextResponse.json(formattedTrips, { status: 200 });
     } catch (error) {
         return NextResponse.json(
             { error: "Failed to fetch trips" },
@@ -18,7 +32,7 @@ export async function POST(req: NextRequest) {
     try {
         const {
             title,
-            destination,
+            location,
             duration,
             start_date,
             end_date,
@@ -29,7 +43,7 @@ export async function POST(req: NextRequest) {
         const trip = await prisma.trip.create({
             data: {
                 title,
-                destination,
+                location,
                 duration,
                 start_date,
                 end_date,

@@ -1,13 +1,13 @@
 "use client";
-
 import type React from "react";
-
-import {  useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import Link from "next/link";
 import { User, Lock } from "@phosphor-icons/react";
 import { logInSchema } from "@/lib/validationSchemas";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const LoginForm = () => {
     const [loading, setLoading] = useState(false);
@@ -56,7 +56,7 @@ const LoginForm = () => {
 
     return (
         <div
-            className="flex min-h-screen items-center justify-center bg-cover bg-center px-4 py-12"
+            className="flex min-h-screen flex-col items-center justify-center bg-cover bg-center px-4 py-10"
             style={{
                 backgroundImage: "url('/aka.jpg')",
                 backgroundSize: "cover",
@@ -203,6 +203,14 @@ const LoginForm = () => {
                         </Link>
                     </div>
                 </div>
+            </div>
+            <div className="mt-2">
+                <Link href="/">
+                    <Button variant="ghost" className="gap-2 text-white">
+                        <ArrowLeft className="h-4 w-4" />
+                        Back to Home
+                    </Button>
+                </Link>
             </div>
         </div>
     );

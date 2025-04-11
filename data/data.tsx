@@ -1,13 +1,11 @@
-import { Trip } from "@/types/Interface";
 import { MapPin, Shield, Users, Clock } from "lucide-react";
 
 export const carouselImg = [
-    { key: 1, src: "/1.jpg", alt: "palestine", location: "Palestine" },
+    { key: 1, src: "/1.jpg", alt: "Jericho", location: "Fasayel Mountains" },
     { key: 2, src: "/2.jpg", alt: "palestine", location: "Palestine" },
     { key: 3, src: "/3.jpg", alt: "palestine", location: "Palestine" },
     { key: 4, src: "/4.jpg", alt: "palestine", location: "Palestine" }
 ];
-
 export const reasons = [
     {
         icon: <MapPin className="h-10 w-10 text-[#FA7436]" />,
@@ -69,40 +67,40 @@ export const destination = [
         activities: ["Tel es-Sultan", "Mount of Temptation", "Hisham's Palace"]
     }
 ];
-
 export const testimonials = [
     {
         name: "Lina Ahmad",
         role: "Traveler",
         feedback:
             "AeroCanaan provided an unforgettable experience! The guides were knowledgeable, and the views were breathtaking.",
-        image: "/images/user1.jpg"
+        image: "/images/user1.jpg",
+        rating: 5
     },
     {
         name: "Ahmad Saleh",
         role: "Adventurer",
         feedback:
             "Exploring Palestine with AeroCanaan was a dream come true. Highly recommended for any traveler!",
-        image: "/images/user2.jpg"
+        image: "/images/user2.jpg",
+        rating: 4.5
     },
     {
         name: "Sara Khaled",
         role: "Backpacker",
         feedback:
             "I had the best time ever! The team was so friendly, and the itinerary was perfectly planned.",
-        image: "/images/user3.jpg"
+        image: "/images/user3.jpg",
+        rating: 4.8
     },
     {
         name: "Omar Nasser",
         role: "Explorer",
         feedback:
             "A must-try experience! Everything was well organized, and the trip was beyond my expectations.",
-        image: "/images/user4.jpg"
+        image: "/images/user4.jpg",
+        rating: 4
     }
 ];
-
-// This file contains mock data that would be replaced with API calls in production
-
 export const destinations = [
     {
         id: 1,
@@ -564,24 +562,3 @@ export const destinations = [
 ];
 
 
-export interface Destination {
-  images: string[];
-  name: string;
-  category: string;
-  shortDescription: string;
-  location: string;
-  availableTrips: number;
-  historicalSignificance: string;
-  culturalImportance: string;
-  bestTimeToVisit: string;
-  localTips: string;
-  accessibilityInfo: string;
-  fullDescription: string;
-  trips: Trip[];
-  id: number;
-  longDescription?: string;
-  activities?: string[];
-  reviews?: number;  
-  rating?: number;
-  price?: number;
-}

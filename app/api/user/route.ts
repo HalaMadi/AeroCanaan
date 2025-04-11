@@ -1,17 +1,19 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { verifyToken } from "@/lib/auth";
+import { cookies } from "next/headers";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
     try {
-        const token = req.headers.get("token");
+        const cookieStore = await cookies();
+        const token = cookieStore.get("auth-token");
         if (!token) {
             return NextResponse.json(
                 { error: "Token not provided" },
                 { status: 401 }
             );
         }
-        const decoded = verifyToken(token);
+        const decoded = verifyToken(token.value);
         if (!decoded) {
             return NextResponse.json(
                 { error: "Invalid token" },
@@ -45,41 +47,6 @@ export async function GET(req: NextRequest) {
         console.error("Error fetching user:", error);
         return NextResponse.json(
             { error: "Failed to fetch user" },
-            { status: 500 }
-        );
-    }
-}
-export async function PUT(req: NextRequest) {
-    try {
-        const token = req.headers.get("token");
-        if (!token) {
-            return NextResponse.json(
-                { error: "Token not provided" },
-                { status: 401 }
-            );
-        }
-        const decoded = verifyToken(token);
-        if (!decoded) {
-            return NextResponse.json(
-                { error: "Invalid token" },
-                { status: 401 }
-            );
-        }
-        if (!decoded.userId) {
-            return NextResponse.json(
-                { error: "Invalid token, missing user ID" },
-                { status: 400 }
-            );
-        }
-        const body = await req.json();
-        const updatedUser = await prisma.user.update({
-            where: { id: decoded.userId },
-            data: body
-        });
-        return NextResponse.json(updatedUser, { status: 200 });
-    } catch (error) {
-        return NextResponse.json(
-            { error: "Failed to update user" },
             { status: 500 }
         );
     }

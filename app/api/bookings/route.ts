@@ -1,11 +1,13 @@
 import { verifyToken } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
 // handles booking creation
 export async function POST(request: NextRequest) {
     try {
-        const token = request.headers.get("token");
+        const cookieStore = await cookies();
+        const token = cookieStore.get("auth-token")?.value;
         if (!token) {
             return NextResponse.json(
                 { error: "Unauthorized" },
@@ -20,7 +22,6 @@ export async function POST(request: NextRequest) {
             );
         }
         const { tripId } = await request.json();
-        console.log(tripId);//qosay rote booking
         const trip = await prisma.trip.findUnique({
             where: { id: tripId },
             select: { seats: true }
@@ -64,9 +65,10 @@ export async function POST(request: NextRequest) {
 }
 
 // gets all bookings for a user
-export async function GET(request: NextRequest) {
+export async function GET() {
     try {
-        const token = request.headers.get("token");
+        const cookieStore =await cookies();
+        const token = cookieStore.get("auth-token")?.value; 
         if (!token) {
             return NextResponse.json("Unauthorized", { status: 401 });
         }
@@ -90,7 +92,8 @@ export async function GET(request: NextRequest) {
 // handles booking update
 export async function PUT(request: NextRequest) {
     try {
-        const token = request.headers.get("token");
+        const cookieStore = await cookies();
+        const token = cookieStore.get("auth-token")?.value; 
         if (!token) {
             return NextResponse.json("Unauthorized", { status: 401 });
         }
@@ -111,10 +114,12 @@ export async function PUT(request: NextRequest) {
         return NextResponse.json("Internal Server Error", { status: 500 });
     }
 }
+
 // handles booking deletion
 export async function DELETE(req: NextRequest) {
     try {
-        const token = req.headers.get("token");
+        const cookieStore = await cookies();
+        const token = cookieStore.get("auth-token")?.value;
         if (!token) {
             return NextResponse.json(
                 { error: "Token not provided" },
@@ -144,3 +149,4 @@ export async function DELETE(req: NextRequest) {
         );
     }
 }
+
