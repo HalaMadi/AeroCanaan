@@ -3,7 +3,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight, Bell, Calendar, CalendarRange, Map, Users } from "lucide-react";
@@ -15,11 +14,10 @@ import Image from "next/image";
 import UserChart from "@/components/charts/UserChart";
 
 const AdminDashboard = () => {
-  const [period, setPeriod] = useState("week");
   const { dashboardData, upcomingTrips } = useDashboardData(); 
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-20">
       <div className="mb-6 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>

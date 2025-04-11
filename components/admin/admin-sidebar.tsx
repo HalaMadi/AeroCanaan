@@ -30,7 +30,8 @@ import {
     User,
     ChevronDown,
     BarChart3,
-    FileText
+    FileText,
+    Home
 } from "lucide-react";
 import { ThemeToggle } from "../theme-toggle";
 
@@ -53,6 +54,17 @@ export default function AdminSidebar() {
             </SidebarHeader>
             <SidebarContent>
                 <SidebarMenu>
+                    <SidebarMenuItem>
+                        <SidebarMenuButton
+                            asChild
+                            isActive={isActive("/")}
+                        >
+                            <Link href="/">
+                                <Home className="h-5 w-5" />
+                                <span>Landing page</span>
+                            </Link>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             asChild
