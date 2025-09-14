@@ -87,7 +87,7 @@ const AddingTripPage = () => {
               className="border p-2 rounded bg-background text-foreground"
               onFocus={(e) => {
                 e.target.type = "date"
-                e.target.showPicker && e.target.showPicker()
+                e.target.showPicker()
               }}
               onBlur={(e) => {
                 if (!e.target.value) {
@@ -101,7 +101,7 @@ const AddingTripPage = () => {
               className="border p-2 rounded bg-background text-foreground"
               onFocus={(e) => {
                 e.target.type = "date"
-                e.target.showPicker && e.target.showPicker()
+                e.target.showPicker ()
               }}
               onBlur={(e) => {
                 if (!e.target.value) {

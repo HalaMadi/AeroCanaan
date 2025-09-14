@@ -8,7 +8,7 @@ export function verifyToken(token: string) {
             process.env.JWT_SECRET_KEY as string
         ) as { userId: string };
         return decoded;
-    } catch (err) {
+    } catch {
         return null;
     }
 }

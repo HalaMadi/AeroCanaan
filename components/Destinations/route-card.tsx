@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Star, Clock } from "lucide-react"
 import type { RouteCardProps } from "@/types/Interface"
 
-export function RouteCard({ id, name, slug, image, price, duration, rating }: RouteCardProps) {
+export function RouteCard({  name, slug, image, price, duration, rating }: RouteCardProps) {
   return (
     <Link href={`/explore/${slug}`}>
       <div className="rounded-lg overflow-hidden shadow-md bg-card transition-transform hover:scale-[1.02]">

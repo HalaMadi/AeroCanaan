@@ -34,8 +34,8 @@ const Navbar = () => {
                 try {
                     const decoded = jwtDecode<User>(token);
                     setUser(decoded);
-                } catch (err) {
-                    console.error("Invalid token");
+                } catch (error) {
+                    console.error("Invalid token", error);
                     localStorage.removeItem("auth-token");
                 }
             }

@@ -44,7 +44,7 @@ const LoginForm = () => {
           position: "top-center",
         })
       }
-    } catch (error) {
+    } catch {
       toast.error("Something went wrong. Try again!", {
         position: "top-center",
       })

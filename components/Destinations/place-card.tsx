@@ -4,7 +4,6 @@ import { Star, MapPin } from "lucide-react"
 import type { PlaceCardProps } from "@/types/Interface"
 
 export function PlaceCard({
-  id,
   name,
   slug,
   image,

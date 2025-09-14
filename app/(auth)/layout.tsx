@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 
 
 const poppins = Poppins({
+    subsets: ["latin"],
     variable: "--font-poppins",
     weight: ["100", "400", "700"]
 });

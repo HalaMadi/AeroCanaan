@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
 import { FileText, User, CreditCard, Check } from "lucide-react";
 import {
     Card,
@@ -19,16 +18,13 @@ interface BookingPageProps {
 }
 
 export default function BookingPage({ trip }: BookingPageProps) {
-    const router = useRouter();
     const [numberOfPeople, setNumberOfPeople] = useState(1);
     const [totalPrice, setTotalPrice] = useState<number>(
         Number(trip.price) || 0
     );
     const [bookingStep, setBookingStep] = useState(1);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isBookingComplete, setIsBookingComplete] = useState(false);
-
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState("");
 
     useEffect(() => {
         if (trip) {
