@@ -27,7 +27,7 @@ export const TripsBarChart = ({ trips }: TripsBarChartProps) => {
     return (
         <Chart
             options={options}
-            series={[{ name: "Trios", data: Object.values(destinationsCount) }]}
+            series={[{ name: "Trips", data: Object.values(destinationsCount) }]}
             type="bar"
             height={350}
         />

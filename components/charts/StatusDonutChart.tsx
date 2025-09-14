@@ -17,7 +17,8 @@ const StatusDonutChart = () => {
         const fetchBookings = async () => {
             try {
                 const response = await axios.get("/api/bookings");
-                setBookings(response.data.data || []);
+                const bookingsData = response.data.data ?? response.data ?? [];
+                setBookings(bookingsData);
             } catch (error) {
                 console.error("Error fetching bookings:", error);
             } finally {

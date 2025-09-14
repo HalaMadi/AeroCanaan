@@ -1,18 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 
+function requireAuth(req: NextRequest, redirectUrl: string, errorMsg: string) {
+    const token = req.cookies.get("auth-token")?.value;
+    if (!token) {
+        const response = NextResponse.redirect(new URL(redirectUrl, req.url));
+        response.cookies.set(
+            "error",
+            errorMsg,
+            { httpOnly: false, maxAge: 60 * 60 * 24 }
+        );
+        return response;
+    }
+    return null;
+}
+
 export function middleware(req: NextRequest) {
     const token = req.cookies.get("auth-token")?.value;
     const userRole = req.cookies.get("userRole")?.value;
+
     if (req.nextUrl.pathname.startsWith("/admin")) {
-        if (!token) {
-            const response = NextResponse.redirect(new URL("/login", req.url));
-            response.cookies.set(
-                "error",
-                "You must be logged in to access this page.",
-                { httpOnly: false, maxAge: 60 * 60 * 24 } // Expires after 1 day
-            );
-            return response;
-        }
+        const authResponse = requireAuth(req, "/login", "You must be logged in to access this page.");
+        if (authResponse) return authResponse;
         if (userRole?.toUpperCase() !== "ADMIN") {
             const response = NextResponse.redirect(new URL("/", req.url));
             response.cookies.set(
@@ -24,28 +32,16 @@ export function middleware(req: NextRequest) {
         }
         return NextResponse.next();
     }
+
     if (req.nextUrl.pathname.startsWith("/booking")) {
-        if (!token) {
-            const response = NextResponse.redirect(new URL("/login", req.url));
-            response.cookies.set(
-                "error",
-                "You must be logged in to access this page.",
-                { httpOnly: false, maxAge: 60 * 60 * 24 }
-            );
-            return response;
-        }
+        const authResponse = requireAuth(req, "/login", "You must be logged in to access this page.");
+        if (authResponse) return authResponse;
         return NextResponse.next();
     }
+
     if (req.nextUrl.pathname.startsWith("/user-profile")) {
-        if (!token) {
-            const response = NextResponse.redirect(new URL("/login", req.url));
-            response.cookies.set(
-                "error",
-                "You must be logged in to access this page.",
-                { httpOnly: false, maxAge: 60 * 60 * 24 }
-            );
-            return response;
-        }
+        const authResponse = requireAuth(req, "/login", "You must be logged in to access this page.");
+        if (authResponse) return authResponse;
         return NextResponse.next();
     }
 }

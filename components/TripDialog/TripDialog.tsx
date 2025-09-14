@@ -16,7 +16,7 @@ export function GlobalBookingDialog() {
 
     return (
         <Dialog open={isOpen} onOpenChange={closeBooking}>
-            <DialogContent className="w-full scale-70 transform bg-white text-center text-black">
+            <DialogContent className="w-full scale-70 transform bg-background text-center text-foreground">
                 <DialogHeader className="mx-auto flex flex-col items-center justify-center">
                     <DialogTitle className="mb-2 text-3xl font-bold text-gray-900">
                         Confirm Booking
