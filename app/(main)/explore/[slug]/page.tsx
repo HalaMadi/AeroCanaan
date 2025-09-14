@@ -1,10 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Star, MapPin, Calendar, Clock, ArrowLeft } from "lucide-react"
+import { PageProps } from 'next/types'
 
-export default function PlaceDetails({ params }: { params: { slug: string } }) {
-  // This would normally fetch data based on the slug
-  // For now we'll use sample data
+export default function PlaceDetails({ params }: PageProps) {
+  const slug = params
   const place = {
     id: 1,
     name: "Jerusalem",
