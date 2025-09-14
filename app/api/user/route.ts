@@ -36,6 +36,7 @@ export async function GET() {
                 mobile: true
             }
         });
+        console.log({user})
         if (!user) {
             return NextResponse.json(
                 { error: "User not found" },

@@ -79,7 +79,7 @@ export default function ExplorePlaces() {
                   <h3 className="line-clamp-1 text-lg font-semibold text-foreground">{trip.title}</h3>
                   <div className="flex items-center">
                     <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    <span className="ml-1 text-sm text-foreground">{trip.rating.toFixed(1)}</span>
+                    <span className="ml-1 text-sm text-foreground">{trip.rating?.toFixed(1)}</span>
                   </div>
                 </div>
                 <div className="mb-3 flex items-center text-sm text-muted-foreground">
@@ -93,7 +93,7 @@ export default function ExplorePlaces() {
                         ${trip.originalPrice.toFixed(2)}
                       </span>
                     )}
-                    <span className="font-bold text-orange-500">${trip.discountPrice.toFixed(2)}</span>
+                    <span className="font-bold text-orange-500">${trip.discountPrice?.toFixed(2)}</span>
                   </div>
                   <Button
                                         onClick={() => handleBookingClick(trip)}
