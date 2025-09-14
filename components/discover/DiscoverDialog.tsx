@@ -23,7 +23,11 @@ import {
     Map
 } from "lucide-react";
 import Image from "next/image";
-import { Place } from "@/types/Interface";
+import { Place, Trip } from "@/types/Interface";
+import { useBooking } from "@/provider/BookingContext";
+import { isAuthenticated } from "@/lib/auth";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 type Props = {
     destination: Place;
@@ -32,7 +36,22 @@ type Props = {
 
 export default function DestinationDialog({ children, destination }: Props) {
     const [open, setOpen] = useState(false);
+    const { openBooking } = useBooking();
+    const router = useRouter();
 
+    const handleBookingClick = (trip: Trip) => {
+        if (!isAuthenticated()) {
+            toast.info("Please log in to book this trip", {
+                position: "top-center",
+                autoClose: 3000
+            });
+            setTimeout(() => {
+                router.push("/login");
+            }, 3000);
+            return;
+        }
+        openBooking(trip);
+    };
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger>{children}</DialogTrigger>
@@ -261,11 +280,16 @@ export default function DestinationDialog({ children, destination }: Props) {
                                                             people
                                                         </div>
                                                     </div>
-                                                    <div className="mt-4">
-                                                        <Button className="w-full bg-[#FA7436] text-white hover:bg-[#e56a30] sm:w-auto">
-                                                            Book This Tour
-                                                        </Button>
-                                                    </div>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleBookingClick(
+                                                                trip
+                                                            )
+                                                        }
+                                                        className="mt-4 cursor-pointer rounded-lg bg-orange-500 px-4 py-2 text-white hover:bg-orange-600"
+                                                    >
+                                                        Book This Tour
+                                                    </Button>
                                                 </div>
                                             )
                                         )}
