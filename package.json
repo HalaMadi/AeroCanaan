@@ -64,7 +64,7 @@
         "@types/chart.js": "^2.9.41",
         "@types/formidable": "^3.4.5",
         "@types/jsonwebtoken": "^9.0.9",
-        "@types/node": "^20.17.30",
+        "@types/node": "^20.19.14",
         "@types/nodemailer": "^6.4.17",
         "@types/react": "^19",
         "@types/react-dom": "^19",
@@ -74,6 +74,6 @@
         "prisma": "^6.16.1",
         "tailwindcss": "^4",
         "ts-node": "^10.9.2",
-        "typescript": "^5"
+        "typescript": "^5.9.2"
     }
 }
