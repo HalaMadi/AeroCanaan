@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const categories = ["Historical", "Religious", "Natural", "Cultural"];
+const categories = ["Historical", "Religious", "Nature", "Cultural"];
 const Discover = () => {
     const [destinations, setDestinations] = useState<Place[]>([]);
 

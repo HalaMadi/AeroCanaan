@@ -74,6 +74,9 @@ export async function DELETE(req: NextRequest) {
         if (!id) {
             return NextResponse.json("ID is required", { status: 400 });
         }
+        await prisma.image.deleteMany({
+            where:{placeId: id}
+        })
         const place = await prisma.place.delete({
             where: {
                 id

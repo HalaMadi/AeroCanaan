@@ -16,7 +16,7 @@ export default function ExplorePlaces() {
     const router = useRouter();
     const getData = async () => {
         try {
-            const res = await axios.get("http://localhost:3000/api/trips");
+            const res = await axios.get("/api/trips");
             setTrips(res.data);
             console.log(res.data);
         } catch (error) {

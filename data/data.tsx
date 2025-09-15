@@ -190,7 +190,7 @@ export const destinations = [
     {
         id: 3,
         name: "Dead Sea",
-        category: "natural",
+        category: "Nature",
         shortDescription:
             "Experience floating effortlessly in the saltiest body of water on Earth, known for its therapeutic minerals and mud.",
         fullDescription:
@@ -308,7 +308,7 @@ export const destinations = [
     {
         id: 6,
         name: "Wadi Qelt",
-        category: "natural",
+        category: "Nature",
         shortDescription:
             "Hike through this dramatic desert canyon with its stunning landscapes, ancient monasteries, and natural springs.",
         fullDescription:
