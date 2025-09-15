@@ -34,11 +34,6 @@ export function LineChart() {
         fill: true,
       },
       {
-        label: 'Expenses",116,54,0.1)',
-        tension: 0.4,
-        fill: true,
-      },
-      {
         label: "Expenses",
         data: [3200, 3800, 3500, 4200, 5100, 5800, 6300, 6100, 6800, 7200, 7800, 8500],
         borderColor: "#6366F1",

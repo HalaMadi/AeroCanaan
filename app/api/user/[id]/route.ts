@@ -2,7 +2,10 @@ import { verifyToken } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function DELETE(req: NextRequest, {params}:{params: { id: string }}) { 
+export async function DELETE(
+    req: NextRequest,
+    context: { params: Promise<{ id: string }> }
+) {
     try {
         const token = req.headers.get("token");
         if (!token) {
@@ -18,7 +21,7 @@ export async function DELETE(req: NextRequest, {params}:{params: { id: string }}
                 { status: 401 }
             );
         }
-        const {id}=await params;
+        const { id } = await context.params;
         if (decoded.userId !== id) {
             return NextResponse.json(
                 { error: "Unauthorized to delete this user" },
@@ -34,7 +37,6 @@ export async function DELETE(req: NextRequest, {params}:{params: { id: string }}
                 { status: 404 }
             );
         }
-        console.log(params.id) 
         await prisma.user.delete({
             where: { id }
         });

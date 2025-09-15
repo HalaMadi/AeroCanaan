@@ -13,7 +13,8 @@ export async function GET() {
                 }
             }
         });
-        const formattedTrips = trips.map((trip) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const formattedTrips = trips.map((trip: any) => ({
             ...trip,
             bookedSeats: trip.bookings.length,
             availableSeats: trip.seats - trip.bookings.length,

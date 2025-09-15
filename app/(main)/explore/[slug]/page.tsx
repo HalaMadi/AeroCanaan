@@ -1,10 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Star, MapPin, Calendar, Clock, ArrowLeft } from "lucide-react"
-import { PageProps } from 'next/types'
 
-export default function PlaceDetails({ params }: PageProps) {
-  const slug = params
+export default async function PlaceDetails({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  
   const place = {
     id: 1,
     name: "Jerusalem",

@@ -4,12 +4,12 @@ import { NextRequest, NextResponse } from "next/server";
 // Fetch a single trip from the database
 export async function GET(
     req: NextRequest,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) {
     try {
-        const { id } = await params;
+        const params = await context.params;
         const trip = await prisma.trip.findUnique({
-            where: { id }
+            where: { id: params.id }
         });
         if (!trip) {
             return NextResponse.json(
@@ -25,14 +25,15 @@ export async function GET(
         );
     }
 }
+
 // Delete a trip from the database
 export async function DELETE(
     req: NextRequest,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) {
     try {
-        const { id } = await params;
-        const trip = await prisma.trip.findUnique({ where: { id } });
+        const params = await context.params;
+        const trip = await prisma.trip.findUnique({ where: { id: params.id } });
         if (!trip) {
             return NextResponse.json(
                 { error: "Trip not found" },
@@ -51,16 +52,17 @@ export async function DELETE(
         );
     }
 }
+
 // Update a trip in the database
 export async function PUT(
     req: NextRequest,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) {
     try {
-        const { id } = await params;
+        const params = await context.params;
         const body = await req.json();
         const editedTrip = await prisma.trip.update({
-            where: { id },
+            where: { id: params.id },
             data: body
         });
         return NextResponse.json(

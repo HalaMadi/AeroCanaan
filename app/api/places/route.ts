@@ -53,7 +53,8 @@ export async function GET() {
                 trips: true
             }
         });
-        const enrichedPlaces = places.map((place) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const enrichedPlaces = places.map((place: any) => ({
             ...place,
             availableTrips: place.trips ? place.trips.length : 0
         }));

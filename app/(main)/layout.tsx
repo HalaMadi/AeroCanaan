@@ -34,11 +34,9 @@ export default function RootLayout({
                 )}
             >
                 <ThemeProvider
-                    attribute="class"
-                    defaultTheme="light"
-                    enableSystem
-                    disableTransitionOnChange={false}
-                >
+                data-theme="class"
+                defaultTheme="system"
+            >
                     <div className="bg-background relative flex min-h-screen flex-col">
                         <Navbar />
                         <BookingProvider>

@@ -27,7 +27,7 @@ export default function RootLayout({
                     poppins.variable
                 )}
             >
-                <ThemeProvider defaultTheme="system" enableSystem>
+                <ThemeProvider defaultTheme="system">
                     {children}
                 </ThemeProvider>
                 <ToastContainer />

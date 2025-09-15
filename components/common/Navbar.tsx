@@ -8,8 +8,8 @@ import { Button } from "../ui/button";
 import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ModeToggle } from "../Destinations/mode-toggle";
-import type { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import { User } from "@/types/Interface";
 
 const navItems = [
     { key: "1", label: "Home", href: "/" },

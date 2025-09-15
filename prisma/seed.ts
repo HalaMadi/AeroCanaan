@@ -114,7 +114,7 @@ async function main() {
             isFeatured: true,
             isSpecialOffer: true,
             hasDiscount: true,
-            placeId: placesInDb.find((p) => p.slug === "wadi-qelt")?.id
+            placeId: placesInDb.find((p: { slug: string; }) => p.slug === "wadi-qelt")?.id
         },
         {
             title: "Christmas Pilgrimage to Bethlehem",
@@ -135,7 +135,7 @@ async function main() {
             isFeatured: false,
             isSpecialOffer: true,
             hasDiscount: true,
-            placeId: placesInDb.find((p) => p.slug === "church-of-the-nativity")
+            placeId: placesInDb.find((p: { slug: string; }) => p.slug === "church-of-the-nativity")
                 ?.id
         },
         {
@@ -157,7 +157,7 @@ async function main() {
             isFeatured: true,
             isSpecialOffer: true,
             hasDiscount: true,
-            placeId: placesInDb.find((p) => p.slug === "battir-village")?.id
+            placeId: placesInDb.find((p: { slug: string; }) => p.slug === "battir-village")?.id
         }
     ];
 
