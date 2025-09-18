@@ -1,12 +1,6 @@
 # 🏕️ AeroCanaan
 
 AeroCanaan is a full-stack web application for discovering and booking adventure trips inside Palestine. It allows users to explore beautiful places, book trips, and interact with a seamless, user-friendly interface.
-
----
-
-## 🚀 Live Demo
-🔗 [Click here to try AeroCanaan](https://aero-canaan.vercel.app/)
-
 ---
 
 
@@ -64,5 +58,5 @@ AeroCanaan is a full-stack web application for discovering and booking adventure
 
 ---
 
-## 🗂️ Project Structure (Simplified)
-
+## 🚀 Live Demo
+🔗 [Click here to try AeroCanaan](https://aero-canaan.vercel.app/)
