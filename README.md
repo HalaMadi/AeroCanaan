@@ -4,19 +4,11 @@ AeroCanaan is a full-stack web application for discovering and booking adventure
 
 ---
 
-## 📌 Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-  - [Frontend](#frontend)
-  - [Backend](#backend)
-  - [Management Tools](#management-tools)
-- [Project Structure](#project-structure)
-- [Setup Instructions](#setup-instructions)
-- [Future Enhancements](#future-enhancements)
+## 🚀 Live Demo
+🔗 [Click here to try AeroCanaan](https://aero-canaan.vercel.app/)
 
 ---
+
 
 ## 🧭 Overview
 
